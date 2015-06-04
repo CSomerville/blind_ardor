@@ -8,7 +8,8 @@ Arbor.Router = Backbone.Router.extend({
   },
 
   treeSearch: function(){
-    var searchForm = new Arbor.Views.SearchForm({el: $('body')});
+    var searchForm = new Arbor.Views.SearchForm();
     searchForm.render();
+    $('body').append(searchForm.el);
   }
 })

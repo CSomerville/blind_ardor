@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require libraries/mustache
 //= require libraries/underscore
 //= require libraries/backbone
 //= require_tree ./backbone
