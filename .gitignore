@@ -11,3 +11,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Keep API key off github
+/app/assets/javascripts/keys/*
