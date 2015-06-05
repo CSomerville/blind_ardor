@@ -1,5 +1,5 @@
 var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
-var treeDataCollection;
+var map;
 
 Arbor.initialize = function(){
   new Arbor.Router();

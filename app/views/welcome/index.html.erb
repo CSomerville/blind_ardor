@@ -3,9 +3,28 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=" + mapKey>
 </script>
 
-<style type="text/css">
-      html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
-    </style>  
+
+<script type="text/template" data-template="designer">
+  <div class="twelve wide column" id="bubble-container"></div>
+  <div class="sixteen wide column" id="page-container"></div>
+</script>
+
+<script type="text/template" data-template="nav-bubbles">
+  <div class="column">
+    <a href="/#tree-search">1</a>
+  </div>
+  <div class="column">
+    <a href="/#tree-sort">2</a>
+  </div>
+  <div class="column">
+    <a href="/#tree-save">3</a>
+  </div>
+</script>
+
+<script type="text/template" data-template="tree-search">
+  <div class="four wide column" id="search-form-container"></div>
+  <div class="twelve wide column" id="search-map-container"></div>  
+</script>
 
 <script type="text/template" data-template="search-form">
   <select name="diameter">

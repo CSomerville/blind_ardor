@@ -7,7 +7,7 @@ Arbor.Views.Map = Backbone.View.extend({
       zoom: 8,
       center: new google.maps.LatLng(40.7127, -74.0059)
     }
-    new google.maps.Map(this.el, mapOptions)
+    map = new google.maps.Map(this.el, mapOptions)
   },
 
   id: "map-canvas"

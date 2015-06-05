@@ -8,13 +8,19 @@ Arbor.Router = Backbone.Router.extend({
   },
 
   treeSearch: function(){
-    var searchForm = new Arbor.Views.SearchForm();
-    searchForm.render();
-    $('body').append(searchForm.el);
-    var map = new Arbor.Views.Map();
-    map.$el.attr("height", "100%")
-    $('html').attr("height", "100%")
-    $('body').attr("height", "100%")
-    $('body').append(map.el);
+    var designer = new Arbor.Views.Designer();
+    designer.loadView(new Arbor.Views.TreeSearch());
+    $('body').append(designer.el);
+
+    // var treeSearch = new Arbor.Views.TreeSearch();
+    // treeSearch.render();
+    // $('body').append(treeSearch.el)
+
+    // var searchForm = new Arbor.Views.SearchForm();
+    // searchForm.render();
+    // $('body').append(searchForm.el);
+    // var map = new Arbor.Views.Map();
+    // map.$el.css('height', '100%')
+    // $ghostDiv.append(map.el)
   }
 })
