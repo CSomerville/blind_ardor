@@ -4,23 +4,33 @@ Arbor.Router = Backbone.Router.extend({
 
   routes: {
     '': 'index',
-    'tree-search': 'treeSearch'
+    'tree-search': 'treeSearch',
+    'tree-sort': 'treeSort',
+    'tree-save': 'treeSave'
   },
 
   treeSearch: function(){
-    var designer = new Arbor.Views.Designer();
+    if(!designer){
+      designer = new Arbor.Views.Designer();
+      $('body').append(designer.el);
+    }
     designer.loadView(new Arbor.Views.TreeSearch());
-    $('body').append(designer.el);
+  },
 
-    // var treeSearch = new Arbor.Views.TreeSearch();
-    // treeSearch.render();
-    // $('body').append(treeSearch.el)
+  treeSort: function(){
+    if(!designer){
+      designer = new Arbor.Views.Designer();
+      $('body').append(designer.el);
+    }
+    designer.loadView(new Arbor.Views.TreeSort());    
+  },
 
-    // var searchForm = new Arbor.Views.SearchForm();
-    // searchForm.render();
-    // $('body').append(searchForm.el);
-    // var map = new Arbor.Views.Map();
-    // map.$el.css('height', '100%')
-    // $ghostDiv.append(map.el)
+  treeSave: function(){
+    if(!designer){
+      designer = new Arbor.Views.Designer();
+      $('body').append(designer.el);
+    }
+    designer.loadView(new Arbor.Views.TreeSave());    
   }
+
 })

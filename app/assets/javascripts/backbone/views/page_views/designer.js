@@ -14,6 +14,7 @@ Arbor.Views.Designer = Backbone.View.extend({
   template: $('[data-template="designer"]').text(),
 
   loadView: function(view){
+    if (this.subView) this.subView.close();
     this.subView = view;
     this.subView.render();
     this.$el.find('#page-container').append(this.subView.el)

@@ -1,5 +1,6 @@
 var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
-var map;
+var mapView;
+var designer;
 
 Arbor.initialize = function(){
   new Arbor.Router();

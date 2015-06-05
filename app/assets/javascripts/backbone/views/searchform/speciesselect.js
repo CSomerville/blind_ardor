@@ -12,6 +12,8 @@ Arbor.Views.SpeciesSelect = Backbone.View.extend({
 
   tagName: 'select',
 
+  id: 'species-select',
+
   render: function(){
     var allSpecies = [];
     Object.keys(this.model.attributes).forEach(function(k){

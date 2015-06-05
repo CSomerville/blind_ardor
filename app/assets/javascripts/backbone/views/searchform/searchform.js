@@ -6,11 +6,21 @@ Arbor.Views.SearchForm = Backbone.View.extend({
 
   tagName: 'form',
 
+  subViews: [],
+
   render: function(){
     this.$el.html(this.template)
     var speciesSelect = new Arbor.Views.SpeciesSelect()
+    this.subViews.push(speciesSelect);
     speciesSelect.render();
     this.$el.prepend(speciesSelect.el)
+  },
+
+  close: function(){
+    this.subViews.forEach(function(view){
+      view.remove();
+    });
+    this.remove();
   }
 
 })
