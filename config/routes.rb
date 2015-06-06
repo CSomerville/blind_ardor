@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :trees, only: [:index]
     resources :species, only: [:index]
+    resources :trails, only: [:index, :create]
   end
 
   # You can have the root of your site routed with "root"

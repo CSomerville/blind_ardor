@@ -5,6 +5,7 @@
 
 <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 
+<!-- Designer App Templates -->
 
 <script type="text/template" data-template="designer">
   <div class="row"></div>
@@ -13,17 +14,20 @@
   <div class="sixteen wide column" id="page-container"></div>
 </script>
 
+
 <script type="text/template" data-template="nav-bubbles">
   <div class="column nav-bubble">
-      <a href="/#tree-search">1</a>
+      <a id="one" href="/#tree-search">1</a>
   </div>
   <div class="column nav-bubble">
-    <a href="/#tree-sort">2</a>
+    <a id="two" href="/#tree-sort">2</a>
   </div>
   <div class="column nav-bubble">
-    <a href="/#tree-save">3</a>
+    <a id="three" href="/#tree-save">3</a>
   </div>
 </script>
+
+<!-- Tree Search Templates -->
 
 <script type="text/template" data-template="tree-search">
   <div class="six wide column" id="search-form-container"></div>
@@ -62,5 +66,16 @@
       <p>{{diameter}} inches diameter</p>
     </div>
   </div>
+</script>
+
+<script type="text/template" data-template="add-button">
+  <button>Add to Trail</button>
+</script>
+
+<!-- Tree Save Templates -->
+
+<script type="text/template" data-template="tree-save">
+  <div class="twelve wide column" id="save-map-container"></div>
+  <div class="twelve wide column" id="save-form-container"></div>
 </script>
 
