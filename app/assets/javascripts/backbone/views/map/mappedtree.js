@@ -44,7 +44,8 @@ Arbor.Views.MappedTree = Backbone.View.extend({
   },
 
   showTree: function(){
-    console.log(this.model)
+    var treeShow = new Arbor.Views.TreeShow({model: this.model});
+    treeShow.render();
   },
 
   close: function(){
