@@ -21,10 +21,16 @@ Arbor.Views.TreeSearch = Backbone.View.extend({
     searchForm.render();
     this.$el.find("#search-form-container").append(searchForm.el);
 
+    treeSearchResults = treeSearchResults || new Arbor.Collections.Trees();
+    var searchResults = new Arbor.Views.SearchResults({collection: treeSearchResults});
+    this.subViews.push(searchResults);
+    searchResults.render();
+    this.$el.find("#search-form-container").append(searchResults.el);
+
     mapView = mapView || new Arbor.Views.Map();
     mapView.$el.css('height', '100%');
     if (mapView.$el.css('display') === 'none') mapView.$el.css('display', 'block');
-    this.$el.find("#search-map-container").css('height', 0.5 * $('body').innerWidth() + "px").append(mapView.el)
+    this.$el.find("#search-map-container").css('height', 0.66666 * $(window).innerHeight() + "px").append(mapView.el)
   },
 
   close: function(){
@@ -46,11 +52,11 @@ Arbor.Views.TreeSearch = Backbone.View.extend({
     eastBound = bounds.qa.A;
     westBound = bounds.qa.j;
 
-    var url = 'api/trees/?species=' + species + '&diameter=' + diameter + '&n=' + northBound + '&s=' + southBound + '&e=' + eastBound + '&w=' + westBound;
+    var url = 'api/trees/?species=' + species + '&n=' + northBound + '&s=' + southBound + '&e=' + eastBound + '&w=' + westBound;
 
     treeSearchResults = treeSearchResults || new Arbor.Collections.Trees();
     treeSearchResults.url = url;
-    // treeSearchResults.fetch();
+    treeSearchResults.fetch();
   }
 })
 

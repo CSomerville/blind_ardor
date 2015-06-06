@@ -3,27 +3,31 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=" + mapKey>
 </script>
 
+<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+
 
 <script type="text/template" data-template="designer">
+  <div class="row"></div>
   <div class="twelve wide column" id="bubble-container"></div>
+  <div class="row"></div>
   <div class="sixteen wide column" id="page-container"></div>
 </script>
 
 <script type="text/template" data-template="nav-bubbles">
-  <div class="column">
-    <a href="/#tree-search">1</a>
+  <div class="column nav-bubble">
+      <a href="/#tree-search">1</a>
   </div>
-  <div class="column">
+  <div class="column nav-bubble">
     <a href="/#tree-sort">2</a>
   </div>
-  <div class="column">
+  <div class="column nav-bubble">
     <a href="/#tree-save">3</a>
   </div>
 </script>
 
 <script type="text/template" data-template="tree-search">
-  <div class="four wide column" id="search-form-container"></div>
-  <div class="twelve wide column" id="search-map-container"></div>  
+  <div class="six wide column" id="search-form-container"></div>
+  <div class="ten wide column" id="search-map-container"></div>  
 </script>
 
 <script type="text/template" data-template="search-form">
@@ -40,5 +44,11 @@
   {{#all}}
     <option value="{{species}}">{{species}}</option>
   {{/all}}
+</script>
+
+<script type="text/template" data-template="search-results">
+  <p>Showing {{lowerBound}} through {{upperBound}} of {{length}} results</p>
+  <button data-action="show-previous-ten">back</button>  
+  <button data-action="show-next-ten">forward</button>
 </script>
 

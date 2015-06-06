@@ -13,3 +13,30 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  background-color: rgb(227, 83, 4);
+  font: 'Raleway';
+}
+
+.nav-bubble {
+  text-align: center;
+}
+
+.nav-bubble a {
+  text-decoration: none;
+  border-style: solid;
+  border-width: 2px;
+  padding: 25px 35px 25px 35px;
+  font-size: 36px;
+  border-radius: 50px;
+  color: white;
+  border-color: white;
+}
+
+.nav-bubble a:hover {
+  background-color: white;
+  color: rgb(227, 83, 4);
+}
+
+

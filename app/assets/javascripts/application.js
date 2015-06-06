@@ -15,5 +15,7 @@
 //= require libraries/mustache
 //= require libraries/underscore
 //= require libraries/backbone
+//= require libraries/mapstyle
 //= require keys/keys
+//= require_tree ./backbone/models
 //= require_tree ./backbone
