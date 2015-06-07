@@ -22,9 +22,7 @@ Arbor.Views.TreeToSort = Backbone.View.extend({
   },
 
   render: function(){
-    var attrs = this.model.attributes;
-    attrs.stop_num += 1;
-    this.$el.html(Mustache.render(this.template, attrs))
+    this.$el.html(Mustache.render(this.template, this.model.attributes))
   },
 
   close: function(){
