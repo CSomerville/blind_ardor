@@ -19,8 +19,27 @@ Arbor.Views.Map = Backbone.View.extend({
     return this.map.getBounds();
   },
 
+  mapBounds: function(){
+    this.bounds = this.getBounds();
+  },
+
+  extendBounds: function(markerPosition){
+    this.bounds.extend(markerPosition);
+  },
+
+  fitBounds: function(){
+    this.map.fitBounds(this.bounds);
+    google.maps.event.addListenerOnce(this.map, 'bounds_changed', function() {
+      if (this.map.getZoom()) this.map.setZoom(14);
+    }.bind(this));
+  },
+
   growTree: function(tree){
     tree.setMap(this.map)
+  },
+
+  addInfo: function(infoWindow, marker){
+    infoWindow.open(this.map, marker)
   }
 
 })

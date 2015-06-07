@@ -5,6 +5,8 @@ Arbor.Views.TreeSave = Backbone.View.extend({
   template: $('[data-template="tree-save"]').text(),
 
   className: 'ui centered grid',
+
+  subViews: [],
   
   render: function(){
 
@@ -17,9 +19,18 @@ Arbor.Views.TreeSave = Backbone.View.extend({
 
     trailShow = new Arbor.Views.TrailShow({collection: trailTrees});
     trailShow.render();
+    this.subViews.push(trailShow);
+
+    saveForm = new Arbor.Views.SaveForm();
+    saveForm.render();
+    this.subViews.push(saveForm);
+    this.$el.find("#save-form-container").append(saveForm.el);
   },
 
   close: function(){
+    this.subViews.forEach(function(view){
+      view.close();
+    })
     this.remove();
   }
 })

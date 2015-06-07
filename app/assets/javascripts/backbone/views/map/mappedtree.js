@@ -48,7 +48,21 @@ Arbor.Views.MappedTree = Backbone.View.extend({
     treeShow.render();
   },
 
+  extendBounds: function(){
+    mapView.extendBounds(this.marker.getPosition());
+  },
+
+  showStopNum: function(){
+
+    this.infoWindow = new google.maps.InfoWindow({
+      content: (this.model.get('stop_num')+1).toString()
+    })
+
+    mapView.addInfo(this.infoWindow, this.marker);
+  },
+
   close: function(){
+    if (this.infoWindow) this.infoWindow.close();
     this.marker.setMap(null);
     this.remove();
   }

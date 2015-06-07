@@ -72,10 +72,36 @@
   <button>Add to Trail</button>
 </script>
 
+<!-- Tree Sort Templates -->
+
+<script type="text/template" data-template="tree-sort">
+  <div class="ten wide column" id="sort-trees-container"></div>
+  <div class="six wide column" id="sort-map-container"></div>  
+</script>
+
+<script type="text/template" data-template="tree-to-sort">
+  <li class="ui-state-default" data-id="{{id}}">
+    <p>{{stop_num}}</p>
+    <p>{{species}}</p>
+    <p>{{borough}}</p>
+    <p>{{street}}</p>
+    <p>Nearest Building: {{building_number}} {{building_street}}</p>  
+  </li>
+</script>
+
 <!-- Tree Save Templates -->
 
 <script type="text/template" data-template="tree-save">
   <div class="twelve wide column" id="save-map-container"></div>
   <div class="twelve wide column" id="save-form-container"></div>
 </script>
+
+<script type="text/template" data-template="tree-save-form">
+  <form>
+    <input type="text" name="name">
+    <button data-action="submit-trail">Save</button>
+  </form>
+</script>
+
+
 
