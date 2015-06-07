@@ -7,6 +7,10 @@ Arbor.Views.SortingTrees = Backbone.View.extend({
   tagName: 'ul',
 
   render: function(){
+
+    this.$el.sortable();
+    this.$el.disableSelection();
+
     this.collection.each(function(model){
       var treeToSort = new Arbor.Views.TreeToSort({model: model});
       treeToSort.render();
