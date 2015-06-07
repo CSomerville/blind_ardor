@@ -6,6 +6,8 @@ Arbor.Views.SortingTrees = Backbone.View.extend({
 
   tagName: 'ul',
 
+  id: 'trees-to-sort',
+
   render: function(){
 
     this.$el.sortable();
