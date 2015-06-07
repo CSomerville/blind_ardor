@@ -17,11 +17,15 @@ Arbor.Views.TreeSort = Backbone.View.extend({
     this.$el.find("#sort-map-container").css('height', 0.66666 * $(window).innerHeight() + "px").append(mapView.el)
 
     var sortingTrees = new Arbor.Views.SortingTrees({collection: trailTrees});
+    this.subViews.push(sortingTrees);
     sortingTrees.render();
     this.$el.find("#sort-trees-container").append(sortingTrees.el);
   },
 
   close: function(){
+    this.subViews.forEach(function(view){
+      view.close();
+    })
     this.remove();
   }
 })

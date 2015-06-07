@@ -19,11 +19,24 @@ Arbor.Views.SortingTrees = Backbone.View.extend({
 
   render: function(){
 
+    mapView.mapBounds();
+
     this.collection.each(function(model){
+
+      var mappedTree = new Arbor.Views.MappedTree({model: model});
+      this.subViews.push(mappedTree);
+      mappedTree.growTree();
+      mappedTree.showStopNum();
+      mappedTree.extendBounds();
+
       var treeToSort = new Arbor.Views.TreeToSort({model: model});
+      treeToSort.marker = mappedTree;
       treeToSort.render();
       this.$el.append(treeToSort.el);
+
     }.bind(this))
+
+    mapView.fitBounds();
   },
 
   reassignStopNums: function(event){

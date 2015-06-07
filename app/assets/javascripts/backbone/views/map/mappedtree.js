@@ -3,6 +3,9 @@ var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
 Arbor.Views.MappedTree = Backbone.View.extend({
 
   initialize: function(){
+
+    this.listenTo(this.model, 'change', this.updateStopNum);
+
     this.marker = new google.maps.Marker({
       position: new google.maps.LatLng(parseFloat(this.model.get("lat")), parseFloat(this.model.get("long"))),
       icon: {
@@ -43,6 +46,16 @@ Arbor.Views.MappedTree = Backbone.View.extend({
     })   
   },
 
+  changeColor: function(color){
+    this.marker.setIcon({
+      path: google.maps.SymbolPath.CIRCLE,
+      scale: 7,
+      fillOpacity: 1,
+      strokeColor: color,
+      fillColor: color
+    }) 
+  },
+
   showTree: function(){
     var treeShow = new Arbor.Views.TreeShow({model: this.model});
     treeShow.render();
@@ -59,6 +72,13 @@ Arbor.Views.MappedTree = Backbone.View.extend({
     })
 
     mapView.addInfo(this.infoWindow, this.marker);
+  },
+
+  updateStopNum: function(){
+    if (this.infoWindow){
+      this.infoWindow.close();
+      this.showStopNum();      
+    }
   },
 
   close: function(){
