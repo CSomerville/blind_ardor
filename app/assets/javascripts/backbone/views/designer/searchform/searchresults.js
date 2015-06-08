@@ -3,7 +3,7 @@ var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
 Arbor.Views.SearchResults = Backbone.View.extend({
 
   initialize: function(){
-    this.listenTo(this.collection, 'sync', this.render);
+    this.listenTo(this.collection, 'sync', this.reset);
   },
 
   events: {
@@ -19,11 +19,17 @@ Arbor.Views.SearchResults = Backbone.View.extend({
 
   resultsIndex: 0,
 
+  reset: function(){
+    this.resultsIndex = 0;
+    this.render();
+  },
+
   render: function(){
 
     if (this.collection.length === 0){
 
       this.$el.html('<p>Displaying No Search Results</p>');
+      this.closeMarkers();
 
     } else {
 
@@ -66,13 +72,17 @@ Arbor.Views.SearchResults = Backbone.View.extend({
     }
   },
 
-  showTen: function(){
-
+  closeMarkers: function(){
     if (this.subViews.length > 0){
       this.subViews.forEach(function(view){
         view.close();
       })
-    }
+    }    
+  },
+
+  showTen: function(){
+
+    this.closeMarkers();
 
     var sliced = this.collection.slice(this.resultsIndex*10, this.resultsIndex*10+10);
     sliced.forEach(function(model){
