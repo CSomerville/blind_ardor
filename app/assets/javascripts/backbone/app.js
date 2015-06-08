@@ -2,6 +2,7 @@ var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
 var mapView;
 var designer;
 var follower;
+var splash;
 var treeSearchResults;
 var trailTrees;
 var trails;

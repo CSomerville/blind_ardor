@@ -12,72 +12,72 @@ Arbor.Router = Backbone.Router.extend({
   },
 
   index: function(){
-
+    this.loadSplash();
   },
 
   treeSearch: function(){
-    if(follower) {
-      follower.close();
-      follower = null;
-    }
-
-    if(!designer){
-      designer = new Arbor.Views.Designer();
-      $('body').append(designer.el);
-    }
-    designer.loadView(new Arbor.Views.TreeSearch());
+    this.loadDesigner(new Arbor.Views.TreeSearch());
   },
 
   treeSort: function(){
-    if(follower) {
-      follower.close();
-      follower = null;
-    }
-
-    if(!designer){
-      designer = new Arbor.Views.Designer();
-      $('body').append(designer.el);
-    }
-    designer.loadView(new Arbor.Views.TreeSort());    
+    this.loadDesigner(new Arbor.Views.TreeSort());    
   },
 
   treeSave: function(){
+    this.loadDesigner(new Arbor.Views.TreeSave());    
+  },
+
+  trailPick: function(){
+    this.loadFollower(new Arbor.Views.TrailPick());
+  },
+
+  trailFollow: function(route){
+    this.loadFollower(new Arbor.Views.TrailFollow({id: route}));
+  },
+
+  loadSplash: function(){
+    if (designer) {
+      designer.close();
+      designer = null;
+    }
     if(follower) {
       follower.close();
       follower = null;
     }
+    splash = splash || new Arbor.Views.Splash();
+    splash.render();
+  },
 
+  loadDesigner: function(view){
+    if (splash) {
+      splash.close();
+      splash = null;
+    }
+    if (follower){
+      follower.close();
+      follower = null
+    }
     if(!designer){
       designer = new Arbor.Views.Designer();
       $('body').append(designer.el);
     }
-    designer.loadView(new Arbor.Views.TreeSave());    
+    designer.loadView(view);    
   },
 
-  trailPick: function(){
+  loadFollower: function(view){
+    if (splash) {
+      splash.close();
+      splash = null;
+    }
     if (designer) {
       designer.close();
       designer = null;
     }
-
     if (!follower){
       follower = new Arbor.Views.Follower();
       $('body').append(follower.el);
     }
-    follower.loadView(new Arbor.Views.TrailPick());
-  },
-
-  trailFollow: function(route){
-    if (designer) {
-      designer.close();
-      designer = null;
-    }
-
-    if (!follower){
-      follower = new Arbor.Views.Follower();
-      $('body').append(follower.el);
-    }
-    follower.loadView(new Arbor.Views.TrailFollow({id: route}));
+    follower.loadView(view)   
   }
 
 })
