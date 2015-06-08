@@ -6,6 +6,8 @@ Arbor.Views.SearchForm = Backbone.View.extend({
 
   tagName: 'form',
 
+  id: 'search-form',
+
   subViews: [],
 
   render: function(){

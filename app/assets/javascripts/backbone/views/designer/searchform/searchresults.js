@@ -13,6 +13,8 @@ Arbor.Views.SearchResults = Backbone.View.extend({
 
   template: $('[data-template="search-results"]').text(),
 
+  id: 'search-results',
+
   subViews: [],
 
   resultsIndex: 0,
@@ -25,10 +27,17 @@ Arbor.Views.SearchResults = Backbone.View.extend({
 
     } else {
 
+      var upperBound;
+      if (this.resultsIndex*10+10 < this.collection.length){
+        upperBound = this.resultsIndex*10+10
+      } else {
+        upperBound = this.resultsIndex*10+this.collection.length%10
+      }
+
       var options = {
         length: this.collection.length,
         lowerBound: this.resultsIndex*10+1,
-        upperBound: this.resultsIndex*10+10
+        upperBound: upperBound
       }
 
       this.$el.html(Mustache.render(this.template, options))

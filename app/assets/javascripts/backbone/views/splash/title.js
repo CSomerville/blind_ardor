@@ -17,7 +17,6 @@ Arbor.Views.Title = Backbone.View.extend({
   },
 
   close: function(){
-    console.log('in here')
     this.remove();
   }
 })

@@ -19,7 +19,7 @@ Arbor.Views.TreeSearch = Backbone.View.extend({
     var searchForm = new Arbor.Views.SearchForm();
     this.subViews.push(searchForm);
     searchForm.render();
-    this.$el.find("#search-form-container").append(searchForm.el);
+    this.$el.find("#search-form-container").css('height', 0.66666 * $(window).innerHeight() + "px").append(searchForm.el);
 
     treeSearchResults = treeSearchResults || new Arbor.Collections.Trees();
     var searchResults = new Arbor.Views.SearchResults({collection: treeSearchResults});

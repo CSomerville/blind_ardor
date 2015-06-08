@@ -34,9 +34,27 @@ body {
   border-color: white;
 }
 
+.nav {
+  text-align: center;
+}
+
+.nav a {
+  text-decoration: none;
+  font-size: 26px;
+  color: white;
+}
+
 .nav-bubble a:hover {
   background-color: white;
   color: rgb(227, 83, 4);
+}
+
+#search-form {
+  height: 50%;
+}
+
+#search-results {
+  height: 50%;
 }
 
 .treeshow {
