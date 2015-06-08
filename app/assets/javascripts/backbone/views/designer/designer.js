@@ -4,6 +4,8 @@ Arbor.Views.Designer = Backbone.View.extend({
 
   initialize: function(){
 
+    $('body').css("background-color", "#E35304")
+
     trailTrees = trailTrees || new Arbor.Collections.Trees();
     if (trailTrees.length > 0) trailTrees.reset();
 
@@ -23,5 +25,11 @@ Arbor.Views.Designer = Backbone.View.extend({
     this.subView.render();
     this.$el.find('#page-container').append(this.subView.el)
     this.navBubble.select();
-  }  
+  },
+
+  close: function(){
+    this.subView.close();
+    this.navBubble.close();
+    this.remove();
+  }
 })

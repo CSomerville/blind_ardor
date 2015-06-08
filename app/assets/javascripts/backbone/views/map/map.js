@@ -40,6 +40,12 @@ Arbor.Views.Map = Backbone.View.extend({
 
   addInfo: function(infoWindow, marker){
     infoWindow.open(this.map, marker)
+  },
+
+  afterTilesLoaded: function(cb){
+    google.maps.event.addListenerOnce(this.map, 'tilesloaded', function(){
+      cb();
+    })
   }
 
 })

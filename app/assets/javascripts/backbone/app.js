@@ -1,8 +1,10 @@
 var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
 var mapView;
 var designer;
+var follower;
 var treeSearchResults;
 var trailTrees;
+var trails;
 
 Arbor.initialize = function(){
   new Arbor.Router();

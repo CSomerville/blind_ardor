@@ -25,5 +25,9 @@ Arbor.Views.NavBubbles = Backbone.View.extend({
         this.$el.find('#three').css(selected);
         break;
     }
+  },
+
+  close: function(){
+    this.remove();
   }
 })

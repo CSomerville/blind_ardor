@@ -6,6 +6,11 @@ module Api
       render json: all_trails.to_json( include: {stops: {include: :tree}} )
     end
 
+    def show
+      trail = Trail.find(params[:id])
+      render json: trail.to_json( include: {stops: {include: :tree}} )
+    end
+
     def create
 
       trail = Trail.new(trail_params)

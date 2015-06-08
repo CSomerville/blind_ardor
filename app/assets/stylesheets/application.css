@@ -83,4 +83,16 @@ body {
   height: 100px;
 }
 
+.follower-nav {
+  text-align: center;
+}
+
+.follower-nav a {
+  text-decoration: none;
+}
+
+.trail:hover {
+  background-color: rgb(227, 83, 4);
+}
+
 
