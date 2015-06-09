@@ -46,6 +46,10 @@ Arbor.Views.Map = Backbone.View.extend({
     google.maps.event.addListenerOnce(this.map, 'tilesloaded', function(){
       cb();
     })
+  },
+
+  resize: function(){
+    google.maps.event.trigger(this.map, 'resize')
   }
 
 })

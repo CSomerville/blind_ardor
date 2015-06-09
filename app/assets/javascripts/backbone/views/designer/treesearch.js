@@ -27,10 +27,11 @@ Arbor.Views.TreeSearch = Backbone.View.extend({
     searchResults.render();
     this.$el.find("#search-form-container").append(searchResults.el).append('<div class="buffer"></div>');
 
-    mapView = mapView || new Arbor.Views.Map();
+    mapView = mapView || new Arbor.Views.Map()
     mapView.$el.css('height', '100%');
     if (mapView.$el.css('display') === 'none') mapView.$el.css('display', 'block');
     this.$el.find("#search-map-container").css('height', 0.66666 * $(window).innerHeight() + "px").append(mapView.el)
+
   },
 
   close: function(){

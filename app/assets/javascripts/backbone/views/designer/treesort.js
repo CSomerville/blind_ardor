@@ -11,7 +11,7 @@ Arbor.Views.TreeSort = Backbone.View.extend({
   render: function(){
     this.$el.html(this.template);
 
-    mapView = mapView || new Arbor.Views.Map();
+    mapView = mapView || new Arbor.Views.Map()
     mapView.$el.css('height', '100%');
     if (mapView.$el.css('display') === 'none') mapView.$el.css('display', 'block');
     this.$el.find("#sort-map-container").css('height', 0.66666 * $(window).innerHeight() + "px").append(mapView.el)
