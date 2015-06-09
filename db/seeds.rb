@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Tree.delete_all
+# Tree.delete_all
 
 species_code_key = {}
 txt = File.read('./db/raw_species.txt')
