@@ -19,10 +19,11 @@ files = Dir['./../tree_data/geoJson_by_borough/*']
 files.each do |file|
 
   puts "reading #{file}"
-  raw = JSON.parse(File.read(file))["features"]
-  nicer = {}
 
-  raw.each do |datum|
+  File.readlines(file).each do |line|
+
+    datum = JSON.parse(line)
+    nicer = {}
 
     nicer[:street] = datum["properties"]["ONSTREET"]
     nicer[:building_number] = datum["properties"]["BUILDINGNU"]
