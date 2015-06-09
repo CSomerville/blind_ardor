@@ -1,9 +1,9 @@
-var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
+ var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
 
 Arbor.Views.TreeSearch = Backbone.View.extend({
 
   events: {
-    'click [data-action="submit"]': 'search'
+    'typeahead:idle': 'search'
   },
 
   className: 'ui centered grid',
@@ -25,7 +25,7 @@ Arbor.Views.TreeSearch = Backbone.View.extend({
     var searchResults = new Arbor.Views.SearchResults({collection: treeSearchResults});
     this.subViews.push(searchResults);
     searchResults.render();
-    this.$el.find("#search-form-container").append(searchResults.el);
+    this.$el.find("#search-form-container").append(searchResults.el).append('<div class="buffer"></div>');
 
     mapView = mapView || new Arbor.Views.Map();
     mapView.$el.css('height', '100%');
@@ -39,24 +39,6 @@ Arbor.Views.TreeSearch = Backbone.View.extend({
       view.close();
     });
     this.remove();
-  },
-
-  search: function(event){
-    event.preventDefault();
-    var species = this.$el.find('#species-select').val();
-    var diameter = this.$el.find('[name="diameter"]').val();
-    var bounds = mapView.getBounds();
-
-    northBound = bounds.za.A;
-    southBound = bounds.za.j;
-    eastBound = bounds.qa.A;
-    westBound = bounds.qa.j;
-
-    var url = 'api/trees/?species=' + species + '&n=' + northBound + '&s=' + southBound + '&e=' + eastBound + '&w=' + westBound;
-
-    treeSearchResults = treeSearchResults || new Arbor.Collections.Trees();
-    treeSearchResults.url = url;
-    treeSearchResults.fetch();
   }
 })
 

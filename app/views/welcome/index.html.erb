@@ -8,12 +8,18 @@
 <!-- Splash Templates -->
 
 <script type="text/template" data-template="blind-ardor">
-  <button>blind_ardor</button>
+  <div class="ui four column grid centered">
+    <div class="column">
+      <div class="title-container">
+        <h1 class="splash-title">blind_ardor</h1>
+      </div>
+    </div>
+  </div>
 </script>
 
 <script type="text/template" data-template="trace-trail">
-  <a href="/#tree-search">trace</a>
-  <a href="/#trail-pick">trail</a>
+  <a class="splash-title" href="/#tree-search">trace</a>
+  <a class="splash-title" href="/#trail-pick">trail</a>
 </script>
 
 <!-- Designer App Templates -->
@@ -47,30 +53,25 @@
 <!-- Tree Search Templates -->
 
 <script type="text/template" data-template="tree-search">
-  <div class="six wide column" id="search-form-container"></div>
+  <div class="six wide column" id="search-form-container">
+    <div class="buffer"></div>
+  </div>
   <div class="ten wide column" id="search-map-container"></div>  
 </script>
 
 <script type="text/template" data-template="search-form">
-  <select name="diameter">
-    <option value="any" selected>any</option>
-    <option value="large">large</option>
-    <option value="medium">medium</option>
-    <option value="slight">slight</option>
-  </select>
-  <button data-action="submit">submit</button>
 </script>
 
-<script type="text/template" data-template="species-select">
-  {{#all}}
-    <option value="{{species}}">{{species}}</option>
-  {{/all}}
+<script type="text/template" data-template="species-input">
+  <input type="text" id="species-input">
 </script>
 
 <script type="text/template" data-template="search-results">
+  <h3>
+    <span data-action="show-previous-ten">back</span>  
+    <span data-action="show-next-ten">forward</span>
+  </h3>
   <p>Showing {{lowerBound}} through {{upperBound}} of {{length}} results</p>
-  <button data-action="show-previous-ten">back</button>  
-  <button data-action="show-next-ten">forward</button>
 </script>
 
 <script type="text/template" data-template="tree-show">

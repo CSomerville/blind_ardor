@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require libraries/jquery-ui
+//= require libraries/typeahead.bundle
 //= require libraries/mustache
 //= require libraries/underscore
 //= require libraries/backbone
