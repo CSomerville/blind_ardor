@@ -77,7 +77,7 @@
 <script type="text/template" data-template="tree-show">
   <div class="ui grid three column centered">
     <div class="column treeshowtext">
-      <h1>{{species}}</h1>
+      <h1 class="tree-show-species">{{species}}</h1>
       <p>{{borough}}</p>
       <p>{{street}}</p>
       <p>Nearest Building: {{building_number}} {{building_street}}</p>
@@ -87,7 +87,13 @@
 </script>
 
 <script type="text/template" data-template="add-button">
-  <button>Add to Trail</button>
+  <div class="ui grid two column">
+    <div class="column">
+      <div class="add-to-trail-container">
+        <p class="add-to-trail">Add to Trail</p>
+      </div>
+    </div>  
+  </div>
 </script>
 
 <!-- Tree Sort Templates -->

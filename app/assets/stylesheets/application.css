@@ -152,15 +152,42 @@ body {
 }
 
 .treeshowtext {
-  background-color: #38DB00;
+  background-color: #00D2DB;
   padding-left: 5%;
   padding-top: 8%;
   padding-bottom: 8%;
   border-radius: 1000px;
   border-width: 5px;
-  border-color: #3D3201;
+  border-color: rgb(227, 83, 4);
   border-style: solid;
-  color: #3D3201;
+  color: white;
+}
+
+.add-to-trail-container{
+  text-align: center;
+}
+
+.add-to-trail {
+  color: white;
+  border-style: solid;
+  border-color: rgb(227, 83, 4);
+  border-style: solid;
+  margin: 0 auto;
+  background-color: #38DB00;
+  font-size: 24px;
+  padding: 10px 5px 10px 5px;
+  border-radius: 5px;
+}
+
+.add-to-trail:hover{
+  background-color: white;
+  color: rgb(227, 83, 4);
+}
+
+.tree-show-species {
+  font-weight: 500;
+  letter-spacing: 5px;
+  font-size: 36px;
 }
 
 .screen {
