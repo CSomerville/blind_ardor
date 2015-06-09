@@ -210,8 +210,9 @@ body {
   margin: 3px 3px 3px 0; 
   padding: 1px;
   float: left;
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
+  background-color: white;
 }
 
 .follower-nav {

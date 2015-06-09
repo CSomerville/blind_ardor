@@ -14,13 +14,13 @@ txt.each_line do |line|
   species_code_key[line.split[0]] = line.split[1..-1].join.downcase
 end
 
-files = Dir['./../tree_data/geoJson_by_borough/*']
+# files = Dir['./../tree_data/geoJson_by_borough/*']
 
-files.each do |file|
+# files.each do |file|
 
-  puts "reading #{file}"
+#   puts "reading #{file}"
 
-  File.readlines(file).each do |line|
+  File.readlines('./../tree_data/geoJson_by_borough/Brooklyn.json').each do |line|
 
     datum = JSON.parse(line)
     nicer = {}
@@ -42,5 +42,5 @@ files.each do |file|
     Tree.create!(nicer)
 
   end
-end
+# end
 

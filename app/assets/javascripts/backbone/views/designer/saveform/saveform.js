@@ -34,6 +34,7 @@ Arbor.Views.SaveForm = Backbone.View.extend({
       });
       trail.save(null, {success: function(){
         trailTrees.reset();
+        window.location.href = "/#trail-pick"
       }});
 
     }
