@@ -17,7 +17,7 @@
 * __typeahead__ to provide autocompletion for tree searches.
 
 ### The Plan:
-* #### A user can create a tree trail so that they can delight other people. This implies two roles:
+* <h4> A user can create a tree trail so that they can delight other people. This implies two roles:</h4>
   * __The tree-trail designer__ can:
     * see a map of NYC and can layer trees on top so that they can decide which trees should be on the path.
     * select a tree to be on the path so that it becomes a stop.
@@ -25,6 +25,8 @@
   * __The tree-trail follower__ can:
     * see a list of possible paths so that they can decide which one to take.
     * see step by step path stops so they can follow a path.
+* #### Entity Relationship Diagram:
+
 
 ### Screenshots:
 ![splash](./readme_images/splash.png)
