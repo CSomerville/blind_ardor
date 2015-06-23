@@ -8,6 +8,8 @@ Arbor.Views.Glade = Backbone.View.extend({
 
   myGlade: null,
 
+  branches: [],
+
   render: function(){
     var canvas = document.getElementById('glade');
     canvas.setAttribute("height", window.innerHeight + "px");
@@ -91,8 +93,7 @@ Arbor.Views.Glade = Backbone.View.extend({
       ctx.fillStyle = (this.len < 3)? "green" : "black"
       ctx.fillRect(this.currentX, this.currentY, this.thickness, this.thickness)
     }
-
-    var branches = [];
+    
     function growGlade(){
 
       var rando = Math.floor(Math.random() * 20);
@@ -101,30 +102,31 @@ Arbor.Views.Glade = Backbone.View.extend({
         var x = Math.floor(Math.random() * window.innerWidth);
         var y = Math.floor(Math.random() * 100) + window.innerHeight;
         var dir = 1.57
-        branches.push(new Branch(x, y, dir, 10, window.innerHeight * 0.33333))
+        this.branches.push(new Branch(x, y, dir, 10, window.innerHeight * 0.33333))
       }
-
-      branches.forEach(function(branch){
+      
+      this.branches.forEach(function(branch){
         if (branch.grow()){
           branch.draw();
         } else {
-          branches.splice(branches.indexOf(branch), 1);
+          this.branches.splice(this.branches.indexOf(branch), 1);
           if (branch.len > 1){
             for (var i = 0; i < 2; i++) {
               var dir = Math.random() * 1.57 - 0.785;              
-              branches.push(new Branch(branch.currentX, branch.currentY, branch.dir + dir, branch.thickness-1, branch.len*0.6666))
+              this.branches.push(new Branch(branch.currentX, branch.currentY, branch.dir + dir, branch.thickness-1, branch.len*0.6666))
             }
             
           }
         }
-      })
-      this.myGlade = window.requestAnimationFrame(growGlade);
+      }.bind(this))
+      this.myGlade = window.requestAnimationFrame(growGlade.bind(this));
     }
-    this.myGlade = window.requestAnimationFrame(growGlade);
+    this.myGlade = window.requestAnimationFrame(growGlade.bind(this));
   },
 
   close: function(){
     window.cancelAnimationFrame(this.myGlade);
+    this.branches = null;
     this.remove();
   }
 })

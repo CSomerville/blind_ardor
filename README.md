@@ -1,6 +1,6 @@
 # blind_ardor
 
-### A tree-trail creation app based on NYC's street tree census data.
+### A tree-trail creation app based on NYC's street tree census data. [Live Demo](http://104.131.60.34:3000)
 
 ----
 
@@ -25,7 +25,6 @@
   * __The tree-trail follower__ can:
     * see a list of possible paths so that they can decide which one to take.
     * see step by step path stops so they can follow a path.
-* #### Entity Relationship Diagram:
 
 
 ### Screenshots:
