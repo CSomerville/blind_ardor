@@ -32,12 +32,7 @@ Arbor.Views.SpeciesSelect = Backbone.View.extend({
   search: function(obj, species){
     var bounds = mapView.getBounds();
 
-    northBound = bounds.za.A;
-    southBound = bounds.za.j;
-    eastBound = bounds.qa.A;
-    westBound = bounds.qa.j;
-
-    var url = 'api/trees/?species=' + species + '&n=' + northBound + '&s=' + southBound + '&e=' + eastBound + '&w=' + westBound;
+    var url = 'api/trees/?species=' + species + '&n=' + bounds.n + '&s=' + bounds.s + '&e=' + bounds.e + '&w=' + bounds.w;
 
     treeSearchResults = treeSearchResults || new Arbor.Collections.Trees();
     treeSearchResults.url = url;

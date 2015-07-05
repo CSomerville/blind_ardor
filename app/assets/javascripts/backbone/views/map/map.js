@@ -16,11 +16,19 @@ Arbor.Views.Map = Backbone.View.extend({
   id: "map-canvas",
 
   getBounds: function(){
-    return this.map.getBounds();
+    var bounds = {};
+    var googleBounds = this.map.getBounds();
+
+    bounds.n = googleBounds.getNorthEast().lat();
+    bounds.e = googleBounds.getNorthEast().lng();
+    bounds.s = googleBounds.getSouthWest().lat();
+    bounds.w = googleBounds.getSouthWest().lng();
+
+    return bounds;
   },
 
   mapBounds: function(){
-    this.bounds = this.getBounds();
+    this.bounds = this.map.getBounds();
   },
 
   extendBounds: function(markerPosition){

@@ -26,6 +26,8 @@ Arbor.Views.SearchResults = Backbone.View.extend({
 
   render: function(){
 
+    console.log(this.collection);
+
     if (this.collection.length === 0){
 
       this.$el.html('<p>Displaying No Search Results</p>');
