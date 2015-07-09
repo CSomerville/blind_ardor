@@ -26,22 +26,21 @@ Arbor.Views.SearchResults = Backbone.View.extend({
 
   render: function(){
 
-    console.log(this.collection);
-
     if (this.collection.length === 0){
 
       this.$el.html('<p>Displaying No Search Results</p>');
       this.closeMarkers();
 
     } else {
-
+      // If the search results collection contains models, this logic uses the resultsIndex variable to track which results are being shown:
+      // eg. showing 1 through 10 results. 
       var upperBound;
       if (this.resultsIndex*10+10 < this.collection.length){
         upperBound = this.resultsIndex*10+10
       } else {
         upperBound = this.resultsIndex*10+this.collection.length%10
       }
-
+      // Prepares an object for consumption by mustache.
       var options = {
         length: this.collection.length,
         lowerBound: this.resultsIndex*10+1,
@@ -49,6 +48,7 @@ Arbor.Views.SearchResults = Backbone.View.extend({
       }
 
       this.$el.html(Mustache.render(this.template, options))
+      // this function will interact the mappedTree view to display tree markers on the map.
       this.showTen();
     }
   },
@@ -60,6 +60,7 @@ Arbor.Views.SearchResults = Backbone.View.extend({
     this.remove();
   },
 
+// increment and decrement moves the resultsIndex up or down appropriately, then rerenders the view, so the user can cycle through search results 10 at a time.
   increment: function(){
     if (this.collection.length/10 > this.resultsIndex) {
       this.resultsIndex++;
@@ -83,6 +84,7 @@ Arbor.Views.SearchResults = Backbone.View.extend({
   },
 
   showTen: function(){
+  // After closing any currently showing markers, this function instantiates mappedTree views (which handles markers), passing in the appropriate model to each.
 
     this.closeMarkers();
 

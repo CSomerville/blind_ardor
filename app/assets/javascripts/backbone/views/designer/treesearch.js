@@ -1,10 +1,6 @@
- var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
+var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
 
 Arbor.Views.TreeSearch = Backbone.View.extend({
-
-  events: {
-    'typeahead:idle': 'search'
-  },
 
   className: 'ui centered grid',
 

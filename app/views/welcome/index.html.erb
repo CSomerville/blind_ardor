@@ -60,9 +60,18 @@
 </script>
 
 <script type="text/template" data-template="search-form">
+  <label class="species-search-label">diameter:</label>
+  <select id="diameter-select">
+    <option value="any" selected>Any</option>
+    <option value="xs">XS</option>
+    <option value="s">S</option>
+    <option value="m">M</option>
+    <option value="l">L</option>
+  </select>
 </script>
 
 <script type="text/template" data-template="species-input">
+  <label class="species-search-label" for="species-input">species:</label>
   <input type="text" id="species-input">
 </script>
 
