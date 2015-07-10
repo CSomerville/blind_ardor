@@ -8,15 +8,25 @@ class Tree < ActiveRecord::Base
       .where(lat: params[:s]..params[:n]).where(long: params[:w]..params[:e]).take(100)
   end
 
-  scope :with_species, ->(species) {
+  scope :with_species, ->(species) do
     if species.present?
       where(species: species)
     end
-  }
+  end
 
-  scope :with_diameter, ->(diameter) {
+  scope :with_diameter, ->(diameter) do
     if diameter.present?
-      where(species: species)
-    end
-  }
+      case diameter
+      when 'xs'
+        where(diameter: 1..6)
+      when 's'
+        where(diameter: 7..12)
+      when 'm'
+        where(diameter: 13..36)
+      when 'l'
+        where(diameter: 37..1000)
+      end
+    end    
+  end
+
 end

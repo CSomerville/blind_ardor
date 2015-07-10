@@ -22,12 +22,14 @@ Arbor.Views.SearchForm = Backbone.View.extend({
 
     // logic to include params based on whether the fields have values.
     var species = ($('#species-input').val() === '')? '' : 'species=' + $('#species-input').val() + '&';
+    var diameter = ($('#diameter-select').val() === '')? '' : 'diameter=' + $('#diameter-select').val() + '&';
 
-    console.log(species);
+    // gets map lat long boundaries to pass as search params
     var bounds = mapView.getBounds();
 
-    var url = 'api/trees/?' + species + 'n=' + bounds.n + '&s=' + bounds.s + '&e=' + bounds.e + '&w=' + bounds.w;
+    var url = 'api/trees/?' + species + diameter + 'n=' + bounds.n + '&s=' + bounds.s + '&e=' + bounds.e + '&w=' + bounds.w;
 
+    // and fetches the results ... the SearchResults view is listening to the treeSearchResults collection
     treeSearchResults = treeSearchResults || new Arbor.Collections.Trees();
     treeSearchResults.url = url;
     treeSearchResults.fetch();
