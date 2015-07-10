@@ -3,7 +3,8 @@ var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
 Arbor.Views.SearchForm = Backbone.View.extend({
 
   events: {
-    'change #diameter-select': 'diameter'
+    'change #diameter-select': 'search',
+    'submit': 'preventDefault'
   },
 
   template: $('[data-template="search-form"]').text(),
@@ -14,7 +15,8 @@ Arbor.Views.SearchForm = Backbone.View.extend({
 
   subViews: [],
 
-  diameter: function(){
+  preventDefault: function(e){
+    e.preventDefault();
     this.search();
   },
 

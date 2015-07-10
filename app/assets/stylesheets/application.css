@@ -106,9 +106,39 @@ body {
   width: 200px;
 }
 
+#diameter-select {
+  background-color: rgb(227, 83, 4);
+  color: white;
+  border-color: white;
+  border-width: 2px;
+  margin: 20px 0;
+}
+
+#diameter-select:hover {
+  color: rgb(227, 83, 4);
+  background-color: white;
+  border-color: rgb(227, 83, 4);
+}
+
+.orange-btn {
+  display: block;
+  margin: 0 auto;
+  background-color: rgb(227, 83, 4);
+  color: white;
+  border-color: white;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+}
+
+.orange-btn:hover {
+  background-color: white;
+  color: rgb(227, 83, 4);
+}
+
 .species-search-label {
   color: white;
-  vertical-align: bottom;
+  vertical-align: baseline;
 }
 
 [data-action="show-next-ten"],
