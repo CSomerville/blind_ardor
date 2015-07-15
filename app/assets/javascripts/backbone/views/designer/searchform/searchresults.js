@@ -3,6 +3,8 @@ var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
 Arbor.Views.SearchResults = Backbone.View.extend({
 
   initialize: function(){
+    // listens for initiation of GET request to api/trees and for the data's return
+    this.listenTo(this.collection, 'request', this.loading)
     this.listenTo(this.collection, 'sync', this.reset);
   },
 
@@ -19,9 +21,14 @@ Arbor.Views.SearchResults = Backbone.View.extend({
 
   resultsIndex: 0,
 
+  // when search results return, reset the results index, rerender the view.
   reset: function(){
     this.resultsIndex = 0;
     this.render();
+  },
+
+  loading: function(){
+    this.$el.html('Loading...');
   },
 
   render: function(){

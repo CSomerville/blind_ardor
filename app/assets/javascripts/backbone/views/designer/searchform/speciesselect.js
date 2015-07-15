@@ -26,7 +26,7 @@ Arbor.Views.SpeciesSelect = Backbone.View.extend({
     });
 
     // links the species input DOM object to the typeahead module
-    this.$el.find('#species-input').typeahead({},{source: engine})
+    this.$el.find('#species-input').typeahead({},{source: engine, limit: 7})
     this.$el.find('#species-input').bind('typeahead:select', this.selected.bind(this))
     this.$el.find('#species-input').bind('typeahead:autocomplete', this.selected.bind(this))
     this.$el.find('#species-input').bind('typeahead:idle', function(){
