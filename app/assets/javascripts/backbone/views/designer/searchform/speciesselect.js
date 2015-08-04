@@ -22,7 +22,13 @@ Arbor.Views.SpeciesSelect = Backbone.View.extend({
     var engine = new Bloodhound({
       local: allSpecies,
       queryTokenizer: Bloodhound.tokenizers.whitespace,
-      datumTokenizer: Bloodhound.tokenizers.whitespace
+      datumTokenizer: function(d) {
+        var aTree = Bloodhound.tokenizers.whitespace(d);
+        for (var i = 1; i < aTree[0].length; i++) {
+          aTree.push(aTree[0].substr(i))
+        }
+        return aTree;
+      }
     });
 
     // links the species input DOM object to the typeahead module
