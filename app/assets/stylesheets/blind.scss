@@ -35,6 +35,10 @@ body {
   font-size: 36px;
   margin-left: 10px;
   margin-right: 10px;
+  opacity: 0;
+  transition: opacity .5s ease-in-out;
+  -moz-transition: opacity .5s ease-in-out;
+  -webkit-transition: opacity .5s ease-in-out;
   &:hover {
     color: $main_orange;
     background-color: $white;

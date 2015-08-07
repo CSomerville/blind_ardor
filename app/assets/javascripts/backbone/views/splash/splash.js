@@ -5,8 +5,8 @@ Arbor.Views.Splash = Backbone.View.extend({
   subViews: [],
 
   render: function(){
-    this.ghostDiv = $('<div>').css("height", $(window).innerHeight() + "px")
-    $('body').append(this.ghostDiv)
+    // this.ghostDiv = $('<div>').css("height", $(window).innerHeight() + "px")
+    // $('body').append(this.ghostDiv)
     this.$el.css("height", $(window).innerHeight() + "px");
     this.$el.append($('<div>').css("height", "40%"))
     $('body').append(this.el)
@@ -26,7 +26,6 @@ Arbor.Views.Splash = Backbone.View.extend({
     this.subViews.forEach(function(view){
       view.close();
     })
-    this.ghostDiv.remove();
     this.remove();
   }
 })
