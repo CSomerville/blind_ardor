@@ -8,7 +8,7 @@ Arbor.Views.Splash = Backbone.View.extend({
     this.ghostDiv = $('<div>').css("height", $(window).innerHeight() + "px")
     $('body').append(this.ghostDiv)
     this.$el.css("height", $(window).innerHeight() + "px");
-    this.$el.append($('<div>').css("height", "50%"))
+    this.$el.append($('<div>').css("height", "40%"))
     $('body').append(this.el)
 
     var glade = new Arbor.Views.Glade();

@@ -1,0 +1,43 @@
+
+$main_orange: rgb(227, 83, 4);
+$med_blue: #00D2DB;
+$ill_advised_green: #38DB00;
+$white: white;
+
+$site-font: 'Raleway';
+
+body {
+  background-color: $main_orange;
+  font: $site-font;
+}
+
+.title-container {
+  text-align: center;
+  a {
+    text-decoration: none;
+  }
+}
+
+#glade {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+}
+
+.splash-title {
+  color: $white;
+  border-color: $white;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  padding: 20px;
+  font-size: 36px;
+  margin-left: 10px;
+  margin-right: 10px;
+  &:hover {
+    color: $main_orange;
+    background-color: $white;
+    cursor: pointer;
+  }
+}

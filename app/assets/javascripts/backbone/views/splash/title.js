@@ -15,7 +15,7 @@ Arbor.Views.Title = Backbone.View.extend({
   },
 
   traceTrail: function(){
-    this.$el.find('.splash-title').replaceWith($('[data-template="trace-trail"]').text())
+    this.$el.find('.changeling').replaceWith($('[data-template="trace-trail"]').text())
   },
 
   close: function(){
