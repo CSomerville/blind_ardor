@@ -16,69 +16,7 @@
  *= require_self
  */
 
-
-
-
-
-#blind-ardor {
-  text-align: center;
-  height: 50%;
-}
-
-.title-container {
-  text-align: center;
-}
-
-.splash-title {
-  margin: 0 auto;
-  color: white;
-  border-color: white;
-  border-style: solid;
-  border-radius: 5px;
-  border-width: 2px;
-  padding: 20px;
-  text-decoration: none;
-  font-size: 36px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-.splash-title:hover {
-  color: rgb(227, 83, 4);
-  background-color: white;
-}
-
-.nav-bubble {
-  text-align: center;
-}
-
-.nav-bubble a {
-  text-decoration: none;
-  border-style: solid;
-  border-width: 2px;
-  padding: 25px 35px 25px 35px;
-  font-size: 36px;
-  border-radius: 50px;
-  color: white;
-  border-color: white;
-}
-
-.nav {
-  text-align: center;
-}
-
-.nav a {
-  text-decoration: none;
-  font-size: 26px;
-  color: white;
-}
-
-.nav-bubble a:hover {
-  background-color: white;
-  color: rgb(227, 83, 4);
-}
-
-.buffer {
+/*.buffer {
   height: 25%;
 }
 
@@ -157,7 +95,7 @@
 [data-action="show-previous-ten"]:hover{
   color: rgb(227, 83, 4);
   background-color: white;
-}
+}*/
 
 .tt-hint {
   top: 1px !important;

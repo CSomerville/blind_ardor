@@ -45,3 +45,112 @@ body {
     cursor: pointer;
   }
 }
+
+.nav-bubble {
+  text-align: center;
+  a {
+    text-decoration: none;
+    border-style: solid;
+    border-width: 2px;
+    padding: 25px 35px 25px 35px;
+    font-size: 36px;
+    border-radius: 50px;
+    color: $white;
+    border-color: $white;
+    &:hover {
+      background-color: $white;
+      color: $main_orange;      
+    }
+  }
+}
+
+
+.nav {
+  text-align: center;
+  a {
+    text-decoration: none;
+    font-size: 26px;
+    color: $white;
+  }
+}
+
+.buffer {
+  height: 25%;
+}
+
+#search-form {
+  height: 25%;
+  text-align: center;
+}
+
+#search-results {
+  height: 25%;
+  text-align: center;
+  padding-top: 50px;
+  color: white;
+}
+
+#species-input {
+  line-height: 24px;
+  border-width: 0px;
+  width: 200px;
+}
+
+#diameter-select {
+  background-color: $main_orange;
+  color: $white;
+  border-color: $white;
+  border-width: 2px;
+  margin: 20px 0;
+  &:hover {
+    color: $main_orange;
+    background-color: $white;
+    border-color: $main_orange;
+    cursor: pointer;
+  }
+}
+
+.orange-btn {
+  display: block;
+  margin: 0 auto;
+  background-color: $main_orange;
+  color: $white;
+  border-color: $white;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  &:hover {
+    background-color: white;
+    color: rgb(227, 83, 4);
+  }
+}
+
+.species-search-label {
+  color: $white;
+  vertical-align: baseline;
+}
+
+[data-action="show-next-ten"],
+[data-action="show-previous-ten"]
+ {
+  color: $white;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 24px;
+  letter-spacing: 2px;  
+}
+
+[data-action="show-next-ten"]:hover,
+[data-action="show-previous-ten"]:hover{
+  color: $main_orange;
+  background-color: $white;
+  cursor: pointer;
+}
