@@ -14,3 +14,5 @@
 
 # Keep API key off github
 /app/assets/javascripts/keys/*
+
+app/assets/javascripts/bower_components/

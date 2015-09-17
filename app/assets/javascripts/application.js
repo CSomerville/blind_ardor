@@ -12,11 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bower_components/typeahead.js/dist/typeahead.bundle.js
+//= require bower_components/mustache/mustache.js
+//= require bower_components/underscore/underscore.js
+//= require bower_components/backbone/backbone.js
 //= require libraries/jquery-ui
-//= require libraries/typeahead.bundle
-//= require libraries/mustache
-//= require libraries/underscore
-//= require libraries/backbone
 //= require libraries/mapstyle
 //= require keys/keys
 //= require_tree ./backbone/models
