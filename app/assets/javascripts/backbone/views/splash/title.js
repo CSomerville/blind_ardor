@@ -4,7 +4,7 @@ Arbor.Views.Title = Backbone.View.extend({
 
   initialize: function(){
     this.timer = null;
-    this.toggler = false;
+    this.onTitle = false;
   },
 
   events: {
@@ -19,11 +19,14 @@ Arbor.Views.Title = Backbone.View.extend({
   template: $('[data-template="blind-ardor"]').text(),
 
   fadein: function(){
-    if (!this.toggler) {
+    // checks to see whether cursor is on title, if not, fade title in
+    if (!this.onTitle) {
+      // if a timer has already been set, clear it
       if (this.timer) {
         clearTimeout(this.timer);
         this.timer = null;
       }
+      // set the opacity to 1, then set a timer which will return it to 0
       this.$el.find('.splash-title').css('opacity', '1');
       this.timer = setTimeout(function(){
         this.$el.find('.splash-title').css('opacity', '0');      
@@ -31,17 +34,19 @@ Arbor.Views.Title = Backbone.View.extend({
     }
   },
 
+  // ensures title remains in view while mouse hovers over the region
   stayFadedIn: function(){
       if (this.timer) {
         clearTimeout(this.timer);
         this.timer = null;
       }
-    this.toggler = true;
+    this.onTitle = true;
     this.$el.find('.splash-title').css('opacity', '1');
   },
 
+  // after mouse leaves title element, fade title out
   fadeout: function(){
-    this.toggler = false;
+    this.onTitle = false;
     this.timer = setTimeout(function(){
       this.$el.find('.splash-title').css('opacity', '0');      
     }.bind(this), 750);    
@@ -51,6 +56,7 @@ Arbor.Views.Title = Backbone.View.extend({
     this.$el.html(this.template);
   },
 
+  // replaces 'blind ardor' with 'trace' and 'trail' anchors
   traceTrail: function(){
     this.$el.find('.changeling').replaceWith($('[data-template="trace-trail"]').text())
     this.$el.find('.splash-title').css('opacity', '1');

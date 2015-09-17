@@ -5,8 +5,6 @@ Arbor.Views.Splash = Backbone.View.extend({
   subViews: [],
 
   render: function(){
-    // this.ghostDiv = $('<div>').css("height", $(window).innerHeight() + "px")
-    // $('body').append(this.ghostDiv)
     this.$el.css("height", $(window).innerHeight() + "px");
     this.$el.append($('<div>').css("height", "40%"))
     $('body').append(this.el)
