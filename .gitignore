@@ -16,3 +16,4 @@
 /app/assets/javascripts/keys/*
 
 app/assets/javascripts/bower_components/
+node_modules/
