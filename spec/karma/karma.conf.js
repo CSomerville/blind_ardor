@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: '../..',
 
 
     // frameworks to use
@@ -15,14 +15,16 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      '../../node_modules/chai/chai.js',
-      '../../app/assets/javascripts/bower_components/jquery/dist/jquery.js',
-      '../../app/assets/javascripts/bower_components/typeahead.js/dist/typeahead.bundle.js',
-      '../../app/assets/javascripts/bower_components/mustache/mustache.js',
-      '../../app/assets/javascripts/bower_components/underscore/underscore.js',
-      '../../app/assets/javascripts/bower_components/backbone/backbone.js',
-      '../../app/assets/javascripts/backbone/**/*.js',
-      '../javascripts/**/*spec.js'
+      'node_modules/chai/chai.js',
+      'app/assets/javascripts/bower_components/jquery/dist/jquery.js',
+      'spec/templates.js',
+      'app/assets/javascripts/bower_components/typeahead.js/dist/typeahead.bundle.js',
+      'app/assets/javascripts/bower_components/mustache/mustache.js',
+      'app/assets/javascripts/bower_components/underscore/underscore.js',
+      'app/assets/javascripts/bower_components/backbone/backbone.js',
+      'app/assets/javascripts/backbone/**/*.js',
+      'spec/javascripts/**/*spec.js'
+
     ],
 
 

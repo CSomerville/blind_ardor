@@ -6,6 +6,7 @@
   "devDependencies": {
     "chai": "^3.2.0",
     "karma": "^0.13.9",
+    "karma-html2js-preprocessor": "^0.1.0",
     "karma-mocha": "^0.2.0",
     "mocha": "^2.3.2"
   }
