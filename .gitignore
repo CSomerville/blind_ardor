@@ -17,3 +17,5 @@
 
 app/assets/javascripts/bower_components/
 node_modules/
+
+spec/templates.js
