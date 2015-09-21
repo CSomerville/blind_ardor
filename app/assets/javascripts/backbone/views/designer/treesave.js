@@ -2,11 +2,13 @@ var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
 
 Arbor.Views.TreeSave = Backbone.View.extend({
 
+  initialize: function(){
+    this.subViews = [];
+  },
+
   template: $('[data-template="tree-save"]').text(),
 
   className: 'ui centered grid',
-
-  subViews: [],
   
   render: function(){
 
@@ -31,6 +33,7 @@ Arbor.Views.TreeSave = Backbone.View.extend({
     this.subViews.forEach(function(view){
       view.close();
     })
+    this.subViews = [];
     this.remove();
   }
 })
