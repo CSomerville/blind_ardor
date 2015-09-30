@@ -8,6 +8,8 @@ Arbor.Collections.Trees = Backbone.Collection.extend({
 
   model: Arbor.Models.Tree,
 
+  url: 'api/trees',
+
   assignStopNum: function(model){
     model.set("stop_num", this.indexOf(model))
   }

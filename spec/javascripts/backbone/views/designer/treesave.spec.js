@@ -36,7 +36,7 @@ describe("TreeSave View", function(){
 
     after(function(){
       mapView = null;
-      treeSave.remove();
+      treeSave.close();
     });
 
     it('should render its template', function(){

@@ -2,6 +2,10 @@ var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
 
 Arbor.Views.SearchForm = Backbone.View.extend({
 
+  initialize: function() {
+    this.subViews = [];
+  },
+
   events: {
     'change #diameter-select': 'search',
     'submit': 'preventDefault'
@@ -13,8 +17,6 @@ Arbor.Views.SearchForm = Backbone.View.extend({
 
   id: 'search-form',
 
-  subViews: [],
-
   preventDefault: function(e){
     e.preventDefault();
     this.search();
@@ -23,18 +25,22 @@ Arbor.Views.SearchForm = Backbone.View.extend({
   search: function(){
 
     // logic to include params based on whether the fields have values.
-    var species = ($('#species-input').val() === '')? '' : 'species=' + $('#species-input').val() + '&';
-    var diameter = ($('#diameter-select').val() === '')? '' : 'diameter=' + $('#diameter-select').val() + '&';
+    var species = ($('#species-input').val()) ? $('#species-input').val() : '';
+    var diameter = ($('#diameter-select').val()) ? $('#diameter-select').val() : '';
 
     // gets map lat long boundaries to pass as search params
     var bounds = mapView.getBounds();
 
-    var url = 'api/trees/?' + species + diameter + 'n=' + bounds.n + '&s=' + bounds.s + '&e=' + bounds.e + '&w=' + bounds.w;
-
     // and fetches the results ... the SearchResults view is listening to the treeSearchResults collection
     treeSearchResults = treeSearchResults || new Arbor.Collections.Trees();
-    treeSearchResults.url = url;
-    treeSearchResults.fetch();
+    treeSearchResults.fetch({data: {
+      species: species,
+      diameter: diameter,
+      n: bounds.n,
+      s: bounds.s,
+      e: bounds.e,
+      w: bounds.w
+    }});
   },
 
   render: function(){
@@ -45,13 +51,14 @@ Arbor.Views.SearchForm = Backbone.View.extend({
     this.$el.prepend(speciesSelect.el)
 
     //listens to speciesSelect for search events (themselves triggered by typeahead events)
-    speciesSelect.on('search', this.search.bind(this))
+    speciesSelect.on('search', this.search.bind(this));
   },
 
   close: function(){
     this.subViews.forEach(function(view){
       view.remove();
     });
+    this.subViews = [];
     this.remove();
   }
 
