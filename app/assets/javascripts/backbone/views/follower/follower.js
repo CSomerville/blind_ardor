@@ -1,19 +1,29 @@
 var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
 
+
+
+
 Arbor.Views.Follower = Backbone.View.extend({
 
-  initialize: function(){
-    $('body').css("background-color", "#00D2DB")
+  initialize: function(router){
     this.$el.html(this.template);
 
     this.followerNav = new Arbor.Views.FollowerNav();
     this.followerNav.render();
-    this.$el.find('#nav-container').append(this.followerNav.el)
+    this.$el.find('#nav-container').append(this.followerNav.el);
+
+    this.router = router;
+    this.listenTo(this.router, 'route', this.routeFired);
+
   },
 
-  className: 'ui centered grid',
+  className: 'ui centered grid follower',
 
   template: $('[data-template="follower"]').text(),
+
+  routeFired: function(route, params){
+    console.log(route, params)
+  },
 
   loadView: function(view){
     if (this.subView) this.subView.close();

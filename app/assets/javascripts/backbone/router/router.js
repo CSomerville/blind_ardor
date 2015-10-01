@@ -74,7 +74,7 @@ Arbor.Router = Backbone.Router.extend({
       designer = null;
     }
     if (!follower){
-      follower = new Arbor.Views.Follower();
+      follower = new Arbor.Views.Follower(this);
       $('body').append(follower.el);
     }
     follower.loadView(view)   

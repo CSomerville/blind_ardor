@@ -19,7 +19,7 @@ describe("BaseView", function(){
 
       addChild: function() {
         var childView = new ChildView();
-        this.subViews.push(childView)
+        this.setSubView({name: 'firstBorn', view: childView});
         childView.render();
         this.$el.append(childView.el);
       }
@@ -52,16 +52,29 @@ describe("BaseView", function(){
 
     it("should initialze an empty subViews array for each child", function(){
       childView.addChild();
-      expect(childView.subViews[0].subViews).to.deep.equal([]);
+      expect(childView.subViews[0].view.subViews).to.deep.equal([]);
     });
+  });
+
+  describe("setSubView", function(){
+    beforeEach(function(){
+      var addSpy = sinon.spy(Arbor.Views.BaseView.prototype, 'setSubView');      
+    });
+    afterEach(function(){
+      Arbor.Views.BaseView.restore();
+    });
+
+    it("should assign")
   });
 
   describe("close", function(){
 
     it("should empty the subViews array", function(){
-    childView.addChild();
-    childView.render();
-    childView.close();
+
+      childView.addChild();
+      childView.render();
+      childView.close();
+
       expect(childView.subViews).to.deep.equal([]);
     });
 
