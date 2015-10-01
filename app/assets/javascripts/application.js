@@ -20,4 +20,5 @@
 //= require libraries/mapstyle
 //= require keys/keys
 //= require_tree ./backbone/models
+//= require ./backbone/views/base
 //= require_tree ./backbone
