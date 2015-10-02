@@ -1,11 +1,11 @@
 var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
 
 Arbor.Views.Follower = Arbor.Views.BaseView.extend({
-  initialize: function(router) {
+  initialize: function() {
     Arbor.Views.BaseView.prototype.initialize.apply(this);
 
     this.render();
-    this.listenTo(router, 'route', this.routeChange);
+    this.listenTo(Backbone.history, 'route', this.routeChange);
   },
   
   className: 'ui centered grid follower',
@@ -13,11 +13,13 @@ Arbor.Views.Follower = Arbor.Views.BaseView.extend({
   template: $('[data-template="follower"]').text(),
 
   render: function(){
-
+    this.$el.html(this.template);
+    this.setSubView( {name: 'nav', view: new Arbor.Views.FollowerNav() });
+    this.getSubView('nav').render();
+    this.$el.find('#nav-container').append(this.getSubView('nav').el);
   },
 
   routeChange: function(){
-
   },
 
 });

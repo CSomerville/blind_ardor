@@ -1,6 +1,6 @@
 var expect = chai.expect;
 
-describe.skip("Arbor.Views.Follower", function(){
+describe("Arbor.Views.Follower", function(){
 
   var $fixture, follower;
 
@@ -15,10 +15,11 @@ describe.skip("Arbor.Views.Follower", function(){
   });
 
   beforeEach(function(){
-    follower = new Arbor.Views.Follower(new Arbor.Router());
+    follower = new Arbor.Views.Follower();
   });
 
   afterEach(function(){
+    follower.remove();
     follower = undefined;
   });
 
@@ -32,6 +33,7 @@ describe.skip("Arbor.Views.Follower", function(){
 
     after(function(){
       Arbor.Views.Follower.prototype.render.restore();
+      Arbor.Views.Follower.prototype.routeChange.restore();
     });
 
     it("should call its render function", function(){
@@ -39,9 +41,9 @@ describe.skip("Arbor.Views.Follower", function(){
     });
 
     it("should listen for route changes", function(){
-      location.href = '#trail-pick';
+      Backbone.history.trigger('route');
       expect(routeChangeSpy).to.have.been.calledOnce;
-      location.href = '#trail-follow';
+      Backbone.history.trigger('route');
       expect(routeChangeSpy).to.have.been.calledTwice;
       location.href = '';
     });
@@ -56,9 +58,7 @@ describe.skip("Arbor.Views.Follower", function(){
 
     it("should render the template", function(){
 
-      follower.render();
       expect(follower.$el.children().length).to.be.at.least(1);
-      follower.close();
 
     });
 

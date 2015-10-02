@@ -92,7 +92,7 @@ describe("BaseView", function(){
 
     it("should return an instance of view if the view is found", function(){
       childView.setSubView({name: 'soDreamy', view: new ChildView()});
-      expect(childView.getSubView('soDreamy').view).to.be.an.instanceOf(Backbone.View);
+      expect(childView.getSubView('soDreamy')).to.be.an.instanceOf(Backbone.View);
     });
 
     it("should return 'false' if the view is not found", function(){
