@@ -1,10 +1,24 @@
 var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
 
 Arbor.Views.Follower = Arbor.Views.BaseView.extend({
+  initialize: function(router) {
+    Arbor.Views.BaseView.prototype.initialize.apply(this);
+
+    this.render();
+    this.listenTo(router, 'route', this.routeChange);
+  },
   
   className: 'ui centered grid follower',
 
-  template: $('[data-template="follower"]').text()
+  template: $('[data-template="follower"]').text(),
+
+  render: function(){
+
+  },
+
+  routeChange: function(){
+
+  },
 
 });
 

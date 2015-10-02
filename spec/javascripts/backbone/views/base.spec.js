@@ -81,6 +81,25 @@ describe("BaseView", function(){
     });
   });
 
+  describe("getSubView", function(){
+
+    it("should be called with a string", function(){
+      childView.addChild();
+      expect(childView.getSubView('firstBorn')).to.be.ok;
+      expect(childView.getSubView.bind({})).to.throw(Error);
+      expect(childView.getSubView.bind(1)).to.throw(Error);
+    });
+
+    it("should return an instance of view if the view is found", function(){
+      childView.setSubView({name: 'soDreamy', view: new ChildView()});
+      expect(childView.getSubView('soDreamy')).to.be.an.instanceOf(Backbone.View);
+    });
+
+    it("should return 'false' if the view is not found", function(){
+      expect(childView.getSubView('neener')).to.be.false;
+    });
+  });
+
   describe("close", function(){
 
     it("should empty the subViews array", function(){
