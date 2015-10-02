@@ -86,13 +86,13 @@ describe("BaseView", function(){
     it("should be called with a string", function(){
       childView.addChild();
       expect(childView.getSubView('firstBorn')).to.be.ok;
-      expect(childView.getSubView.bind({})).to.throw(Error);
-      expect(childView.getSubView.bind(1)).to.throw(Error);
+      expect(childView.getSubView.bind({})).to.throw(TypeError);
+      expect(childView.getSubView.bind(1)).to.throw(TypeError);
     });
 
     it("should return an instance of view if the view is found", function(){
       childView.setSubView({name: 'soDreamy', view: new ChildView()});
-      expect(childView.getSubView('soDreamy')).to.be.an.instanceOf(Backbone.View);
+      expect(childView.getSubView('soDreamy').view).to.be.an.instanceOf(Backbone.View);
     });
 
     it("should return 'false' if the view is not found", function(){
