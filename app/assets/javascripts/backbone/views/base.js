@@ -26,6 +26,25 @@ Arbor.Views.BaseView = Backbone.View.extend({
     }
   },
 
+  unsetSubView: function(str){
+    if (! (typeof str === 'string')) {
+      throw new TypeError('unsetSubView accepts argument: string');
+    } else {
+      var i = _.findIndex(this.subViews, function(el) {return el.name === str });
+
+      if (i === -1) {
+        return false;
+      } else {
+        
+        var x = this.subViews.splice(i, 1)[0];
+
+        if (typeof x.view.close === 'function') {
+          x.view.close();
+        }       
+      }
+    }
+  },
+
   getSubView: function(str) {
     if (! (typeof str === 'string')) {
       throw new TypeError('getSubView accepts argument: string');

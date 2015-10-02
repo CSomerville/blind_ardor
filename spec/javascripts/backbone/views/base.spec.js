@@ -14,7 +14,7 @@ describe("BaseView", function(){
 
       render: function() {
         this.$el.html('<h1>I have been rendered</h1>');
-        $('#test-fixture').html(this.el);
+        $('#test-fixture').append(this.el);
       },
 
       addChild: function() {
@@ -36,6 +36,7 @@ describe("BaseView", function(){
   });
 
   afterEach(function(){
+    childView.remove();
     childView = undefined;
   }); 
 
@@ -81,6 +82,35 @@ describe("BaseView", function(){
     });
   });
 
+  describe("unsetSubView", function(){
+    it("should be called with a string", function(){
+      childView.addChild();
+      expect(childView.unsetSubView.bind(childView, 'bluck')).to.not.throw(TypeError);
+      expect(childView.unsetSubView.bind(childView, {})).to.throw(TypeError);
+      expect(childView.unsetSubView.bind(childView, 1)).to.throw(TypeError);
+    });
+
+    it("should return false if arg does not match subView", function(){
+      childView.addChild();
+      expect(childView.unsetSubView('unk')).to.be.false;
+    });
+
+    it("should remove the subView from subViews arr", function(){
+      childView.addChild();
+      expect(childView.subViews.length).to.equal(1);
+      childView.unsetSubView('firstBorn');
+      expect(childView.subViews).to.deep.equal([]);
+    });
+
+    it("should remove subView from the DOM", function(){
+      childView.render();
+      childView.addChild();
+      expect($fixture.find('h1').length).to.equal(2);
+      childView.unsetSubView('firstBorn');
+      expect($fixture.find('h1').length).to.equal(1);
+    });
+  });
+
   describe("getSubView", function(){
 
     it("should be called with a string", function(){
@@ -113,9 +143,9 @@ describe("BaseView", function(){
 
     it("should remove the childView from the DOM", function(){
       childView.render();
-      expect($('#test-fixture').children().length).to.equal(1);
+      expect($('#test-fixture').find('h1').length).to.equal(1);
       childView.close();
-      expect($('#test-fixture').children().length).to.equal(0);
+      expect($('#test-fixture').find('h1').length).to.equal(0);
     });
 
     it("should be called the correct number of times", function(){

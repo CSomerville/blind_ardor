@@ -2,6 +2,10 @@ var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
 
 Arbor.Views.FollowerNav = Backbone.View.extend({
 
+  initialize: function(){
+    this.render();
+  },
+
   template: $('[data-template="follower-nav"]').text(),
 
   className: 'ui grid three column',
