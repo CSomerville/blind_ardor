@@ -57,14 +57,28 @@ describe("BaseView", function(){
   });
 
   describe("setSubView", function(){
-    beforeEach(function(){
-      var addSpy = sinon.spy(Arbor.Views.BaseView.prototype, 'setSubView');      
-    });
-    afterEach(function(){
-      Arbor.Views.BaseView.restore();
+
+    it("should accept an object with keys of 'name' and 'view'", function(){
+      childView.addChild();
+
+      expect(Object.keys(childView.subViews[0])).to.deep.equal(['name', 'view']);
+      expect(childView.subViews[0].name).to.equal('firstBorn');
+      expect(childView.subViews[0].view.cid).to.be.defined;
     });
 
-    it("should assign")
+    it("should not accept a 'view' that is not a Backbone View", function(){
+      
+      expect(childView.setSubView.bind({name: 'ung', view: 'paradise'})).to.throw(Error);
+      expect(childView.setSubView.bind(['ok'])).to.throw(Error);
+
+    });
+
+    it("should accept an object that is a Backbone View and assign it a name of cid", function(){
+      childView.setSubView(new ChildView());
+
+      expect(childView.subViews.length).to.equal(1);
+      expect(childView.subViews[0].name).to.equal(childView.subViews[0].view.cid);
+    });
   });
 
   describe("close", function(){
@@ -100,7 +114,7 @@ describe("BaseView", function(){
 
     it("should handle subViews without close methods gracefully", function(){
       var view = Backbone.View.extend({});
-      childView.subViews.push(view);
+      childView.subViews.push({name: 'duck', view: view});
       childView.close();
     });
   });

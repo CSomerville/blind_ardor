@@ -9,11 +9,26 @@ Arbor.Views.BaseView = Backbone.View.extend({
     this.subViews = [];
   },
 
+  setSubView: function(obj) {
+
+    if ( _.has(obj, 'name') && _.has(obj, 'view')) {
+      if (obj.view instanceof Backbone.View) {
+        this.subViews.push(obj);
+      } else {
+        throw new Error('subView must be instanceof Backbone.View');
+      }
+    } else if (obj instanceof Backbone.View) {
+      this.subViews.push({name: obj.cid, view: obj});
+    } else {
+      throw new Error('subView must be instanceof Backbone.View');
+    }
+  },
+
   close: function(){
     this.subViews.forEach(function(el){
 
-      if (typeof el.close === 'function') {
-        el.close();
+      if (typeof el.view.close === 'function') {
+        el.view.close();
       }
 
     });
