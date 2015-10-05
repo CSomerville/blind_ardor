@@ -70,4 +70,40 @@ describe("Arbor.Views.Follower", function(){
 
     });
   });
+
+  describe("routeChange", function(){
+    var pickStub, followStub;
+
+    before(function(){
+      pickStub = sinon.stub(Arbor.Views.TrailPick.prototype, 'initialize', function(){
+        this.$el.html('<div class="stubbed-trailpick"></div>');
+      });
+      followStub = sinon.stub(Arbor.Views.TrailFollow.prototype, 'initialize', function(opts){
+        this.$el.html('<div class="stubbed-trailfollow data-id="' + opts.params + '"></div>');
+      });
+    })
+
+    after(function(){
+      Arbor.Views.TrailPick.prototype.initialize.restore();
+      Arbor.Views.TrailFollow.prototype.initialize.restore();
+    });
+
+    it("should instantiate the correct view", function(){
+      Backbone.history.trigger('route', null, '/#trail-pick');
+      expect(pickStub).to.have.been.calledOnce;
+      expect(follower.getSubView('pageView')).to.exist;
+      expect(follower.$el.find('.stubbed-trailpick').length).to.equal(1);
+    });
+
+    it("should swap out subviews on route-change", function(){
+
+      Backbone.history.trigger('route', null, '/#trail-pick');
+      Backbone.history.trigger('route', null, '/#trail-follow', 2);
+
+      expect(followStub).to.have.been.calledOnce;
+      expect(follower.getSubView('pageView')).to.exist;
+      expect(follower.$el.find('.stubbed-trailpick').length).to.equal(0);
+      expect(follower.$el.find('.stubbed-trailfollow').length).to.equal(1);
+    });
+  });
 });
