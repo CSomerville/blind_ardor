@@ -16,10 +16,16 @@ describe("TrailPick View", function(){
                               Arbor.Views.BaseView.extend({
                                 paramsChanged: function(){}
                               });
+
+    // squash fetch behavior
+    trailsFetchStub = sinon.stub(Arbor.Collections.Trails.prototype, 'fetch', function(){
+      return 'I fetched'
+    }); 
   });
 
   after(function(){
     $fixture.remove();
+    Arbor.Collections.Trails.prototype.fetch.restore();
   });
 
   beforeEach(function(){
@@ -31,28 +37,31 @@ describe("TrailPick View", function(){
     trailPick = undefined;
   });
 
-  describe.skip("initialize", function(){
+  describe("initialize", function(){
     var renderSpy, handleBoundsChangedSpy, mapStub;
     
     before(function(){
       renderSpy = sinon.spy(Arbor.Views.TrailPick.prototype, 'render');
-      handleBoundsChangedSpy = sinon.spy(Arbor.Views.TrailPick.prototype, 'handleBoundsChanged')
-      mapStub = sinon.stub(Arbor.Views.Map.prototype, 'getBounds', function(){
-        return {n: 41, s: 40, e: 73, w: 74};
-      });
+      addListenersSpy = sinon.spy(Arbor.Views.TrailPick.prototype, 'addListeners');
     });
 
     after(function(){
-      Arbor.Views.Map.prototype.getBounds.restore();
+      Arbor.Views.TrailPick.prototype.render.restore();
+      Arbor.Views.TrailPick.prototype.addListeners.restore();
     });
 
-    it("Should call this.render", function(){
+    it("Should call this.render and this.addListeners", function(){
       expect(renderSpy).to.have.been.calledOnce;
+      expect(addListenersSpy).to.have.been.calledOnce;
     });
 
-    it.skip("should listen to map bounds change", function(){
-      mapView.boundsChanged();
-      expect(handleBoundsChangedSpy).to.have.been.calledOnce;
+    it("Should instantiate Trails collection", function(){
+      expect(trailPick.collection).to.be.defined;
+      expect(trailPick.collection).to.be.instanceOf(Backbone.Collection);
+    });
+
+    it("Should call fetch", function(){
+      expect(trailsFetchStub).to.have.been.called;
     });
   });
 
@@ -87,6 +96,7 @@ describe("TrailPick View", function(){
       expect(trailPick.$el.find('#trail-filter').length).to.equal(1);
     });
   });
+
   describe("addListeners", function() {
 
     before(function(){
@@ -108,6 +118,46 @@ describe("TrailPick View", function(){
       trailPick.getSubView('trailFilter').paramsChanged();
       expect(handleParamsChangedSpy).to.have.been.calledOnce;
       expect(handleParamsChangedSpy).to.have.been.calledWith({n: 41, s: 40, e: 73, w: 74}, 'pinoak');
+    });
+  });
+
+  describe("handleParamsChanged", function(){
+    beforeEach(function(){
+      trailsFetchStub.reset();
+    })
+
+    it("should call fetch with provided args", function(){
+      trailPick.handleParamsChanged({n: 41, s: 40, e: 73, w: 74}, 'pinoak');
+      expect(trailsFetchStub).to.have.been.calledOnce;
+      expect(trailsFetchStub).to.have.been.calledWith({
+        data: {
+          bounds: {n: 41, s: 40, e: 73, w: 74},
+          species: 'pinoak'
+        }
+      });
+    });
+
+    it("should accept fewer args", function(){
+      trailPick.handleParamsChanged({n: 41, s: 40, e: 73, w: 74});
+      expect(trailsFetchStub).to.have.been.calledWith({
+        data: {
+          bounds: {n: 41, s: 40, e: 73, w: 74}
+        }
+      });
+
+      trailPick.handleParamsChanged(null, 'pinoak');
+      expect(trailsFetchStub).to.have.been.calledWith({
+        data: {species: 'pinoak'}
+      });
+    });
+
+    it("should handle bad args gracefully", function(){
+      trailPick.handleParamsChanged({n: 41, s: 40});
+      expect(trailsFetchStub).to.have.been.calledWith({data: {}});
+
+      trailPick.handleParamsChanged(1, 2, 3);
+      expect(trailsFetchStub).to.have.been.calledWith({data: {}});
+
     });
   });
 });
