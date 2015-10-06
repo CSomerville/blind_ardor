@@ -16,11 +16,14 @@ Arbor.Views.TrailFilter = Arbor.Views.BaseView.extend({
     this.$el.find('#trail-filter-map').append(mapView.el);
   },
 
-  handleBoundsChanged: function() {
-
+  handleBoundsChanged: function(bounds) {
+    
+    this.bounds = bounds;
+    this.paramsChanged();
+  
   },
 
   paramsChanged: function() {
 
   }
-})
+});

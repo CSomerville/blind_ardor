@@ -1,7 +1,7 @@
 var expect = chai.expect;
 
 describe("TrailFilter", function(){
-  var trailFilter, getBoundsStub, renderSpy, handleGetBoundsSpy;
+  var trailFilter, getBoundsStub, renderSpy, handleGetBoundsSpy, paramsChangedSpy;
 
   before(function(){
     mapView = mapView || new Arbor.Views.Map();
@@ -53,6 +53,26 @@ describe("TrailFilter", function(){
 
     it("should append the map", function(){
       expect(trailFilter.$el.find('#map-canvas').length).to.equal(1);
+    });
+  });
+
+  describe("handleBoundsChanged", function(){
+    beforeEach(function(){
+      paramsChangedSpy = sinon.spy(Arbor.Views.TrailFilter.prototype, 'paramsChanged');
+    });
+
+    afterEach(function(){
+      Arbor.Views.TrailFilter.prototype.paramsChanged.restore();
+    });
+
+    it("should set this.bounds to the arg", function(){
+      trailFilter.handleBoundsChanged({n: 41, s: 40, e: 73, w: 74});
+      expect(trailFilter.bounds).to.deep.equal({n: 41, s: 40, e: 73, w: 74});
+    });
+
+    it("should call this.paramsChanged", function(){
+      trailFilter.handleBoundsChanged({n: 41, s: 40, e: 73, w: 74});
+      expect(paramsChangedSpy).to.have.been.calledOnce;
     });
   });
 });
