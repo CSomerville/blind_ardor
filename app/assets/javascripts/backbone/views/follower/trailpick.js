@@ -1,11 +1,12 @@
 var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
 
 Arbor.Views.TrailPick = Arbor.Views.BaseView.extend({
+  
   initialize: function(){
     Arbor.Views.BaseView.prototype.initialize.apply(this);
 
     this.render();
-    this.listenTo(mapView, 'boundsChanged', this.handleBoundsChanged);
+    this.addListeners();
   },
 
   className: 'ui centered grid',
@@ -13,7 +14,7 @@ Arbor.Views.TrailPick = Arbor.Views.BaseView.extend({
   template: $('[data-template="trail-pick"]').text(),
 
   render: function(){
-    
+
     this.$el.html(this.template);
 
     this.setSubView({name: 'trailList', view: new Arbor.Views.TrailList() });
@@ -26,36 +27,11 @@ Arbor.Views.TrailPick = Arbor.Views.BaseView.extend({
       .append(this.getSubView('trailFilter').el);
   },
 
-  handleBoundsChanged: function(){
+  addListeners: function() {
+    this.listenTo(this.getSubView('trailFilter'), 'paramsChanged', this.handleParamsChanged);
+  },
+
+  handleParamsChanged: function(){
 
   }
 });
-
-// Arbor.Views.TrailPick = Backbone.View.extend({
-
-//   className: 'ui centered grid',
-
-//   template: $('[data-template="trail-pick"]').text(),
-
-//   subViews: [],
-
-//   render: function(){
-
-//     this.$el.html(this.template);
-
-//     trails = trails || new Arbor.Collections.Trails()
-//     var trailsList = new Arbor.Views.TrailsList({collection: trails});
-//     this.subViews.push(trailsList);
-//     trailsList.render();
-//     this.$el.find('#trails-list-container').append(trailsList.el);
-
-//     trails.fetch();
-//   },
-
-//   close: function(){
-//     this.subViews.forEach(function(view){
-//       view.close();
-//     })
-//     this.remove();
-//   }
-// })
