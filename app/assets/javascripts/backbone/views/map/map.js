@@ -34,7 +34,7 @@ Arbor.Views.Map = Backbone.View.extend({
   },
 
   boundsChanged: function(){
-    this.trigger('boundsChanged', this.getBounds.bind(this));
+    this.trigger('boundsChanged', this.getBounds());
   },  
 
   mapBounds: function(){

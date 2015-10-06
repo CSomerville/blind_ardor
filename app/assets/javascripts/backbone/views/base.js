@@ -45,6 +45,17 @@ Arbor.Views.BaseView = Backbone.View.extend({
     }
   },
 
+  unsetAllSubViews: function() {
+    this.subViews.forEach(function(el){
+
+      if (typeof el.view.close === 'function') {
+        el.view.close();
+      }
+
+    });
+    this.subViews = [];
+  },
+
   getSubView: function(str) {
     if (! (typeof str === 'string')) {
       throw new TypeError('getSubView accepts argument: string');
@@ -55,14 +66,7 @@ Arbor.Views.BaseView = Backbone.View.extend({
   },
 
   close: function(){
-    this.subViews.forEach(function(el){
-
-      if (typeof el.view.close === 'function') {
-        el.view.close();
-      }
-
-    });
-    this.subViews = [];
+    this.unsetAllSubViews();
     this.remove();
   }
 });
