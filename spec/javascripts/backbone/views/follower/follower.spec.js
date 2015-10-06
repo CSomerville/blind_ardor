@@ -76,6 +76,7 @@ describe("Arbor.Views.Follower", function(){
 
     before(function(){
       pickStub = sinon.stub(Arbor.Views.TrailPick.prototype, 'initialize', function(){
+        Arbor.Views.BaseView.prototype.initialize.apply(this);
         this.$el.html('<div class="stubbed-trailpick"></div>');
       });
       followStub = sinon.stub(Arbor.Views.TrailFollow.prototype, 'initialize', function(opts){

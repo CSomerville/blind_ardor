@@ -12,6 +12,8 @@ Arbor.Views.Map = Backbone.View.extend({
       };
 
       this.map = new google.maps.Map(this.el, mapOptions);
+
+      google.maps.addListener(this.map, 'bounds_changed', this.boundsChanged.bind(this));
     }
 
 
@@ -30,6 +32,10 @@ Arbor.Views.Map = Backbone.View.extend({
 
     return bounds;
   },
+
+  boundsChanged: function(){
+    this.trigger('boundsChanged', this.getBounds.bind(this));
+  },  
 
   mapBounds: function(){
     this.bounds = this.map.getBounds();

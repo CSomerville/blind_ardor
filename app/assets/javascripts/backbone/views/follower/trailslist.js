@@ -1,6 +1,6 @@
 var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
 
-Arbor.Views.TrailsList = Backbone.View.extend({
+Arbor.Views.TrailList = Backbone.View.extend({
 
   initialize: function(){
     this.listenTo(this.collection, 'add', this.addOne);
