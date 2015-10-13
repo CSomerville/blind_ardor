@@ -1,57 +1,43 @@
 var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
 
 Arbor.Views.TrailList = Arbor.Views.BaseView.extend({
+  
   initialize: function(){
+
     Arbor.Views.BaseView.prototype.initialize.apply(this);
 
-    if ( typeof this.collection === 'undefined') {
-      throw new Error("TrailList requires collection passed as parameter")
-    }
-
-    this.render();
     this.listenTo(this.collection, 'sync', this.refreshList);
-  },
-
-  render: function(){
-
   },
 
   refreshList: function(){
 
+    if (this.subViews.length > 0) {
+
+      var collectionIds = this.collection.pluck('id').map( function(id) { return id.toString() });
+      var difference = _.difference(_.pluck(this.subViews, 'name'), collectionIds);
+      var shared = _.intersection(_.pluck(this.subViews, 'name'), collectionIds);
+
+      _.each(difference, function(id) { this.unsetSubView(id) }.bind(this));
+
+      this.collection.each(function(model){
+
+        if (! _.contains(shared, model.get('id').toString()) ) {
+
+          this.addOne(model);
+        }
+      }.bind(this));
+
+    } else {
+
+      this.collection.each(this.addOne.bind(this));
+    }
+
   },
 
-  addOne: function(){
+  addOne: function(model) {
 
+    var subView = new Arbor.Views.TrailInList({ model: model });
+    this.setSubView({ name: model.get('id').toString(), view: subView });
+    this.$el.append(this.getSubView(model.get('id').toString()).el);    
   }
 });
-
-// Arbor.Views.TrailList = Backbone.View.extend({
-
-//   initialize: function(){
-//     this.listenTo(this.collection, 'add', this.addOne);
-//   },
-
-//   className: 'ui grid',
-
-//   subViews: [],
-
-//   addOne: function(trail){
-//     var trailView = new Arbor.Views.TrailInList({model: trail});
-//     this.subViews.push(trailView);
-//     trailView.render();
-//     this.$el.append(trailView.el);
-//   },
-
-//   render: function(){
-//     this.collection.each(function(model){
-//       this.addOne(model);
-//     }.bind(this))
-//   },
-
-//   close: function(){
-//     this.subViews.forEach(function(view){
-//       view.close();
-//     });
-//     this.remove();
-//   }
-// })

@@ -1,6 +1,6 @@
 var expect = chai.expect;
 
-describe("Arbor.Views.Follower", function(){
+describe.skip("Arbor.Views.Follower", function(){
 
   var $fixture, follower;
 

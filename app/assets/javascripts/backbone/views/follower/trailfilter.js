@@ -17,13 +17,11 @@ Arbor.Views.TrailFilter = Arbor.Views.BaseView.extend({
   },
 
   handleBoundsChanged: function(bounds) {
-    
     this.bounds = bounds;
-    this.paramsChanged();
-  
+    this.paramsChanged(); 
   },
 
   paramsChanged: function() {
-
+    this.trigger('paramsChanged', this.bounds);
   }
 });

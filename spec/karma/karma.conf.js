@@ -21,6 +21,8 @@ module.exports = function(config) {
       'app/assets/javascripts/bower_components/mustache/mustache.js',
       'app/assets/javascripts/bower_components/underscore/underscore.js',
       'app/assets/javascripts/bower_components/backbone/backbone.js',
+      'app/assets/javascripts/backbone/models/**/*.js',
+      'app/assets/javascripts/backbone/collections/**/*.js',
       'app/assets/javascripts/backbone/**/*.js',
       'spec/javascripts/**/*spec.js'
 
@@ -67,6 +69,7 @@ module.exports = function(config) {
 
     captureTimeout: 10000,
 
+    
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits

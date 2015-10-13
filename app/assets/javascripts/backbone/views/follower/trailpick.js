@@ -21,8 +21,14 @@ Arbor.Views.TrailPick = Arbor.Views.BaseView.extend({
 
     this.$el.html(this.template);
 
-    this.setSubView({name: 'trailList', view: new Arbor.Views.TrailList() });
-    this.setSubView({name: 'trailFilter', view: new Arbor.Views.TrailFilter() });
+    this.setSubView({
+      name: 'trailList', 
+      view: new Arbor.Views.TrailList({ collection: this.collection }) 
+    });
+    this.setSubView({
+      name: 'trailFilter', 
+      view: new Arbor.Views.TrailFilter() 
+    });
 
     this.$el.find('#trail-list-container')
       .append(this.getSubView('trailList').el);

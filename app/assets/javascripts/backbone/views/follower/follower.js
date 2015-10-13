@@ -1,6 +1,7 @@
 var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
 
 Arbor.Views.Follower = Arbor.Views.BaseView.extend({
+  
   initialize: function() {
     Arbor.Views.BaseView.prototype.initialize.apply(this);
 

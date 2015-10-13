@@ -13,7 +13,7 @@ Arbor.Views.Map = Backbone.View.extend({
 
       this.map = new google.maps.Map(this.el, mapOptions);
 
-      google.maps.addListener(this.map, 'bounds_changed', this.boundsChanged.bind(this));
+      google.maps.event.addListener(this.map, 'bounds_changed', this.boundsChanged.bind(this));
     }
 
 

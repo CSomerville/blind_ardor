@@ -2,6 +2,10 @@ var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
 
 Arbor.Views.TrailInList = Backbone.View.extend({
 
+  initialize: function() {
+
+  },
+
   events: {
     'click': 'showTrail'
   },
