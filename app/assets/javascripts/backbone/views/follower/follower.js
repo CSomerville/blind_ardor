@@ -26,10 +26,10 @@ Arbor.Views.Follower = Arbor.Views.BaseView.extend({
     }
 
     switch(route){
-      case '/#trail-pick':
+      case 'trailPick':
         this.setSubView({name: 'pageView', view: new Arbor.Views.TrailPick() });
         break;
-      case '/#trail-follow':
+      case 'trailFollow':
         this.setSubView({
           name: 'pageView', 
           view: new Arbor.Views.TrailFollow({params: params}) 

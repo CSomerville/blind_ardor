@@ -9,8 +9,6 @@ Arbor.Views.TrailPick = Arbor.Views.BaseView.extend({
 
     this.render();
     this.addListeners();
-
-    this.collection.fetch();
   },
 
   className: 'ui centered grid',
@@ -38,22 +36,31 @@ Arbor.Views.TrailPick = Arbor.Views.BaseView.extend({
   },
 
   addListeners: function() {
+    this.listeningToParams = true;
+
     this.listenTo(this.getSubView('trailFilter'), 'paramsChanged', this.handleParamsChanged);
+    this.listenTo(this.collection, 'sync', function() {
+      this.listeningToParams = true;
+    });
   },
 
   handleParamsChanged: function(bounds, species){
-    var data = {};
+    if (this.listeningToParams) {
 
-    if ( bounds instanceof Object &&
-      bounds.hasOwnProperty('n') && bounds.hasOwnProperty('s') && 
-      bounds.hasOwnProperty('e') && bounds.hasOwnProperty('w')) {
-      data.bounds = bounds;
+      var data = {};
+
+      if ( bounds instanceof Object &&
+        bounds.hasOwnProperty('n') && bounds.hasOwnProperty('s') && 
+        bounds.hasOwnProperty('e') && bounds.hasOwnProperty('w')) {
+        data.bounds = bounds;
+      }
+
+      if (typeof species === 'string') {
+        data.species = species;
+      }
+      
+      this.collection.fetch({data: data});
+      this.listeningToParams = false;
     }
-
-    if (typeof species === 'string') {
-      data.species = species;
-    }
-
-    this.collection.fetch({data: data});
   }
 });

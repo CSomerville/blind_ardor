@@ -9,6 +9,8 @@ Arbor.Views.TrailList = Arbor.Views.BaseView.extend({
     this.listenTo(this.collection, 'sync', this.refreshList);
   },
 
+  className: 'ui grid',
+
   refreshList: function(){
 
     if (this.subViews.length > 0) {

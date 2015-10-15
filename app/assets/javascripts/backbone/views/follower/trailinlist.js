@@ -1,18 +1,16 @@
 var Arbor = Arbor || { Models: {}, Collections: {}, Views: {} };
 
-Arbor.Views.TrailInList = Backbone.View.extend({
+Arbor.Views.TrailInList = Arbor.Views.BaseView.extend({
 
   initialize: function() {
+    Arbor.Views.BaseView.prototype.initialize.apply(this);
 
-  },
-
-  events: {
-    'click': 'showTrail'
+    this.render();
   },
 
   template: $('[data-template="trail-in-list"]').text(),
 
-  className: 'four wide column trail',
+  className: 'five wide column trail',
 
   getBoroughs: function(){
     var boroughs = _.uniq(_.pluck(_.pluck(this.model.get("stops"), 'tree'), 'borough'));
@@ -26,21 +24,13 @@ Arbor.Views.TrailInList = Backbone.View.extend({
     });
   },
 
-  showTrail: function(){
-    window.location.href = "/#trail-follow/" + this.model.get("id");
-  },
-
   render: function(){
-    this.totalDiameter();
     var trail = {
-      name: this.model.get("name"),
+      id: this.model.get('id'),
+      name: this.model.get('name'),
       boroughs: this.getBoroughs(),
       diameterage: this.totalDiameter()
     }
     this.$el.html(Mustache.render(this.template, trail));
-  },
-
-  close: function(){
-    this.remove();
   }
-})
+});

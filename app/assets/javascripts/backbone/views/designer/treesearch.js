@@ -31,7 +31,6 @@ Arbor.Views.TreeSearch = Backbone.View.extend({
   },
 
   close: function(){
-    mapView.$el.css('display', 'none');
     this.subViews.forEach(function(view){
       view.close();
     });

@@ -2,7 +2,8 @@ module Api
   class TrailsController < ApplicationController
 
     def index
-      all_trails = Trail.all().sort_by { |trail| trail.created_at }
+      all_trails = Trail.search(params)      
+      # all_trails = Trail.all().sort_by { |trail| trail.created_at }
       render json: all_trails.to_json( include: {stops: {include: :tree}} )
     end
 

@@ -165,8 +165,8 @@
 <!-- Trail Pick Templates -->
 
 <script type="text/template" data-template="trail-pick">
-  <div class="four wide column" id="trail-filter-container"></div>
-  <div class="twelve wide column" id="trail-list-container"></div>
+  <div class="six wide column" id="trail-filter-container"></div>
+  <div class="ten wide column" id="trail-list-container"></div>
 </script>
 
 <script type="text/template" data-template="trail-filter">
@@ -175,9 +175,11 @@
 </script>
 
 <script type="text/template" data-template="trail-in-list">
-  <h3>{{name}}</h3>
-  <p>{{boroughs}}</p>
-  <p>Sum of diameters: {{diameterage}}''</p>
+  <a href="/#trail-follow/{{id}}">
+    <h3>{{name}}</h3>
+    <p>{{boroughs}}</p>
+    <p>Sum of diameters: {{diameterage}}''</p>
+  </a>
 </script>
 
 <!-- Trail Follow templates -->

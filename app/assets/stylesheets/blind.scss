@@ -161,4 +161,58 @@ body {
 
 .follower {
   background-color: $med_blue;
+  background-image: radial-gradient($main_orange 10%, transparent 0),
+                    radial-gradient(black 10%, transparent 0),
+                    radial-gradient(darken($main_orange, 20%) 10%, transparent 0);
+  background-size: 41px 41px, 61px 61px, 83px 83px;
+  .follower-nav {
+    background-color: darken($med_blue, 10%);
+    text-align: center;
+    color: white;
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}
+
+#trail-filter-container {
+  height: 100vh;
+  #filter {
+    height: 100%;
+    #trail-filter-map {
+      height: 50%;
+      #map-canvas {
+        height: 100%;
+      }
+    }
+    #trail-filter-search {
+      .species-select {
+        margin: 10% 15%;
+        padding: 5% 1%;
+        background-color: darken($main_orange, 20%);
+        border-radius: 5px;
+      }
+    }
+  }  
+}
+
+
+#trail-list-container {
+  .trail {
+    cursor: pointer;
+    color: black;
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-radius: 5px;
+    background-color: $med_blue;
+  }
+  .trail:hover {
+    background-color: $main_orange;
+  }
 }

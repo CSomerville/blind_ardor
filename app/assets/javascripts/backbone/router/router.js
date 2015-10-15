@@ -28,11 +28,11 @@ Arbor.Router = Backbone.Router.extend({
   },
 
   trailPick: function(){
-    this.loadFollower(new Arbor.Views.TrailPick());
+    this.loadFollower();
   },
 
-  trailFollow: function(route){
-    this.loadFollower(new Arbor.Views.TrailFollow({id: route}));
+  trailFollow: function(){
+    this.loadFollower();
   },
 
   loadSplash: function(){
@@ -64,7 +64,7 @@ Arbor.Router = Backbone.Router.extend({
     designer.loadView(view);    
   },
 
-  loadFollower: function(view){
+  loadFollower: function(){
     if (splash) {
       splash.close();
       splash = null;

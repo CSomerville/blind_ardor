@@ -10,6 +10,8 @@ Arbor.Views.SpeciesSelect = Backbone.View.extend({
 
   template: $('[data-template="species-input"]').text(),
 
+  className: 'species-select',
+
   render: function(){
     // loads the species names from the view's collection into an array of strings for use by typeahead
     var allSpecies = [];
@@ -43,7 +45,7 @@ Arbor.Views.SpeciesSelect = Backbone.View.extend({
 
   // typeahead triggers this event, which in turn triggers a search event for which the searchform view is listening
   selected: function(){
-    this.trigger('search');
+    this.trigger('search', $('#species-input').val());
   },
 
   close: function(){
